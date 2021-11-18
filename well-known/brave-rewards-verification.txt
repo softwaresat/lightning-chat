@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: lightningchat.live
+Token: 5fc58cbbaec89a24cd5b5af5e83f678c5d8bc298944bafe96f8a5ef3ce7f6e75
