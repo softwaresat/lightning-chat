@@ -1,1 +1,43 @@
-//ignore this file
+textarea {
+    max-width: calc(100% - 230px) !important;
+}
+
+@media only screen and (max-width: 600px) {
+  textarea {
+    width: 100%;
+  }
+}
+
+.sidenav {
+white-space:nowrap;
+margin-top: 50px;
+float: right;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+   /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #004766; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding: 5px;
+  padding-top: 20px;
+  max-width: 250px;
+  overflow: hidden;
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  text-overflow: ellipsis;
+  width: 200px;
+  overflow:hidden;
+  white-space: nowrap;
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}

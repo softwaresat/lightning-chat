@@ -3,7 +3,7 @@ html, body {
 } 
 
 body {
-  background: #19434d !important;
+  background: #3e505b !important;
   color: black;
   background: '#def28d' !important;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
@@ -11,44 +11,19 @@ body {
   font-size: large;
 }
 
-.sidenav {
-white-space:nowrap;
-margin-top: 50px;
-float: right;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-   /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  right: 0;
-  background-color: #004766; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding: 20px;
-}
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
 .messages {
   height: 100%;
   width: 100%;
   margin-bottom: 15px;
+  border: transparent;
 }
 
 .card {
-  background: #19434d !important;
+  background: #3e505b !important;
   margin-bottom: 1.25%;
   color: #efefef;
   border-radius: 20px;
+  border: transparent !important;
 }
 
 .card-title {
@@ -61,14 +36,23 @@ li:hover {
 }
 
 textarea {
-  height: 100px;
-  width: 100%;
-  border-radius: 20px;
-  background-color: #999999 !important;
+  min-height: 50px;
+  width: calc(100% - 20px) !important;
+  background-color: #c2c2c2 !important;
   display: block;
-  margin-left: 10%;
-  color: #000000 !important;
+  margin: 0 !important;
+  padding: 10px;
+  color: #004766 !important;
   position: sticky;
+  bottom:0;
+  -webkit-appearance: none;
+  border-radius: 0;
+  outline: none;
+  border: 0;
+  font-size: 15px;
+  height: auto;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
 }
 
 input {
@@ -98,7 +82,7 @@ input {
 #comment {
   background-color: white;
   resize: none;
-  width: 100%;
+  margin: 0;
 }
 
 .typing{
