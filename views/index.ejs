@@ -3,6 +3,8 @@
     <head>
         
                 <title>Lightning</title>
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/room.css">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
           
@@ -17,79 +19,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-<style>
-html, body {
-  overflow-x:hidden 
-} 
-  body{
-    background-color: #3e505b;
-    color: black;
-    background: '#def28d'
-    font-family: 'Roboto', sans-serif;
-    font-weight:300;
-    font-size: large;
-  }
- .card{
-border-color: black;
-background: #19434d;
-margin-bottom: 1.25%;
-border-radius: 20px;
- }
-  .card-title{
-    font-size: xx-large;
-    background-color: "#731768"
-  }
-  li:hover{
-    background-color:#86bbd8;
-  }
-  textarea{
-    height: 100px;
-    width: 80%;
-    border-radius: 20px;
-    background-color: #999999;
-     display: block;
-    margin-left: 10%;
-    color: #000000;
-  }
-  input{
-    border-radius: 20px;
-    background-color: "#731768"
-  }
-  .buttons{
-    visibility: hidden;
-  }
-  #formItem label {
-    display: inline-block;
-    text-align: center;
-    line-height: 150%;
-    font-size: .85em;
-  }
-  .label {
-    text-align:center;
-  }
-  @media only screen and (max-width: 600px) {
-
-  img{
-    width: 100%;
-    }
-  #articles{
-  margin-left: -20%;
-  }
-  #one{
-  margin-top: 30%;
-  }
- .ring{
- border-color: blue;
- color: black;
- }
- #form>input{
-margin: 0 auto;
-  margin-left: auto;
-  margin-right: auto;
- }
- 
-}
-</style>
 </head>
     <body>
      
@@ -170,7 +99,7 @@ last.style.visibility = 'visible'
   <div class="card" style="width: 100%;float:right;margin-top: 4%;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p style="color:#efefef"><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
+      <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
 
 </div>
 </div>
@@ -189,7 +118,7 @@ last.style.visibility = 'visible'
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-        <p style="color:#efefef"><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
+        <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
 
 </div>
 </div>
@@ -198,7 +127,7 @@ last.style.visibility = 'visible'
   </ul>
       
   
-<div style="background-color: #731768;font-size: small;">
+<div>
 
 
 </div>
@@ -206,10 +135,11 @@ last.style.visibility = 'visible'
   <% } %>
 
     <%})%>
-  <div id='messages'>
-
+<div id='messages'>
+  
 </div>
- <div style="color: #b7b7b7"class="typing"></div>
+   <div class="typing"></div>
+
     </div>
 <form name="form" id='form' >
 <div>
@@ -221,8 +151,9 @@ last.style.visibility = 'visible'
 <script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
 <input name = 'name' id = 'name' style="font-family:sans-serif;font-size:1em;"type='hidden' value = <%=name1%> required />
 
-
-<textarea name="comment" id="comment" style="margin-top: 3%;font-family:sans-serif;font-size:1em;"required></textarea>
+<div class="input-container">
+  <textarea name="comment" id="comment" required></textarea>
+</div>
 
 <input type="hidden" id = 'author' name = 'author'value="<%=name1%>">  
 <br>
@@ -254,7 +185,7 @@ input.addEventListener("keyup", function(event) {
        <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;color:"#731768"'>
 
-      <p style="color:#efefef;"><strong style="color: #b7b7b7;">${message.user}</strong>: ${message.text}</p>   
+      <p><strong style="color: #b7b7b7;">${message.user}</strong>: ${message.text}</p>   
 </div>
       `)
                 $(document).scrollTop($(document).height());

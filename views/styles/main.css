@@ -1,0 +1,131 @@
+html, body {
+  overflow-x:hidden 
+} 
+
+body {
+  background: #19434d !important;
+  color: black;
+  background: '#def28d' !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-weight:300;
+  font-size: large;
+}
+
+.sidenav {
+white-space:nowrap;
+margin-top: 50px;
+float: right;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+   /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #004766; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding: 20px;
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.messages {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.card {
+  background: #19434d !important;
+  margin-bottom: 1.25%;
+  color: #efefef;
+  border-radius: 20px;
+}
+
+.card-title {
+  font-size: xx-large;
+  background-color: "#731768 !important";
+}
+
+li:hover {
+  background-color:#86bbd8 !important;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #999999 !important;
+  display: block;
+  margin-left: 10%;
+  color: #000000 !important;
+  position: sticky;
+}
+
+input {
+  border-radius: 20px;
+  background-color: "#731768"
+}
+
+.buttons {
+  visibility: hidden;
+}
+
+#formItem label {
+  display: inline-block;
+  text-align: center;
+  line-height: 150%;
+  font-size: .85em;
+}
+
+.label {
+  text-align:center;
+}
+
+.input-container {
+  padding: 5px;
+}
+
+#comment {
+  background-color: white;
+  resize: none;
+  width: 100%;
+}
+
+.typing{
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+  img {
+    width: 100%;
+  }
+  #articles {
+    margin-left: -20%;
+  }
+  #one {
+    margin-top: 30%;
+  }
+  .ring {
+    color: black !important;
+  }
+  #form > input {
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sidenav {
+    display: none;
+  }
+
+}

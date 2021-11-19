@@ -207,6 +207,22 @@ app.get('/account', async function(request, response) {
   require('./GET_METHODS/account.js')(request, response, db2);
 
 })
+app.get('/forgotpassword', async function(request, response) {
+  require('./GET_METHODS/forgotpassword.js')(request, response, db2);
+
+})
+app.post('/forgotpasswordemail', async function(request, response) {
+  require('./EDIT_METHODS/forgotpassword.js')(request, response, db2, nodemailer, transporter);
+
+})
+app.post('/editpassword', async function(request, response) {
+  require('./EDIT_METHODS/editpassword.js')(request, response, db2);
+
+})
+app.get('/changepassword', async function(request, response) {
+  require('./GET_METHODS/changepassword.js')(request, response, db2);
+
+})
 app.get('/room', async function(req, res) {
   require('./GET_METHODS/room.js')(req, res, db2);
 

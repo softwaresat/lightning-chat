@@ -3,6 +3,7 @@
     <head>
         
                 <title>Lightning</title>
+<link rel="stylesheet" href="styles/main.css">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
           
@@ -17,122 +18,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-<style>
-.sidenav {
-white-space:nowrap;
-
-margin-top: 50px;
-float: right;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-   /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  right: 0;
-  background-color: #111; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding: 20px;
-
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-html, body {
-  overflow-x:hidden 
-} 
-  body{
-    background-color: #3e505b;
-    color: black;
-    background: '#def28d'
-    font-family: 'Roboto', sans-serif;
-    font-weight:300;
-    font-size: large;
-  }
- 
-  .card-title{
-    font-size: xx-large;
-    background-color: "#731768"
-  }
-  .card{
-  border-color: black;
-  background-color: #19434d;
-  margin-bottom: 1.25%;
-border-radius: 20px;
-color: #efefef;
-  }
-  li:hover{
-    background-color:#86bbd8;
-  }
-  textarea{
-
-     height: 100px;
-    width: 80%;
-    border-radius: 20px;
-    background-color: #999999;
-     display: block;
-     margin-left: 2.5%;
-         color: #000000;
-
-  }
-  input{
-    border-radius: 20px;
-    background-color: "#731768"
-  }
-  .buttons{
-    visibility: hidden;
-  }
-  #formItem label {
-    display: inline-block;
-    text-align: center;
-    line-height: 150%;
-    font-size: .85em;
-  }
-  .label {
-    text-align:center;
-  }
-  @media only screen and (max-width: 600px) {
-
-  img{
-    width: 100%;
-    }
-  #articles{
-  margin-left: -20%;
-  }
-  #one{
-  margin-top: 30%;
-  }
- .ring{
- border-color: blue;
- color: black;
- }
- #form>input{
-margin: 0 auto;
-  margin-left: auto;
-  margin-right: auto;
- }
- @media screen and (max-width: 600px) {
-  .sidenav {
-    visibility: hidden;
-
-}
-}
-</style>
 </head>
     <body>
 
-    <div class="sidenav" style='background-color: #004766;'>
+    <div class="sidenav">
           <a href="/" style='font-size: 1em; color: white;'>Global Chat Room</a>
 
     <% author.forEach(function (result) { %>
@@ -234,7 +123,7 @@ last.style.visibility = 'visible'
   <div class="card" style="width: 100%;float:right;margin-top: 4%;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
+      <p><strong><%= result.user %></strong>: <%= result.text %></p>
 
 </div>
 </div>
@@ -253,7 +142,7 @@ last.style.visibility = 'visible'
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
+      <p><strong><%= result.user %></strong>: <%= result.text %></p>
 
 </div>
 </div>
@@ -273,7 +162,7 @@ last.style.visibility = 'visible'
   <div id='messages'>
 
 </div>
- <div style="color: #b7b7b7;"class="typing"></div>
+ <divclass="typing"></div>
     </div>
 <form name="form" id='form' >
 <div>
@@ -320,7 +209,7 @@ input.addEventListener("keyup", function(event) {
        <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;color:"#731768"'>
 
-      <p><strong style="color: #b7b7b7;">${message.user}</strong>: ${message.text}</p>   
+      <p><strong>${message.user}</strong>: ${message.text}</p>   
 </div>
       `)
                 $(document).scrollTop($(document).height());
