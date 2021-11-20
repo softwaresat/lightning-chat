@@ -1,5 +1,5 @@
 html, body {
-  overflow-x:hidden 
+  overflow-x:hidden;
 } 
 
 body {
@@ -10,7 +10,10 @@ body {
   font-weight:300;
   font-size: large;
 }
-
+.fa-image{
+  font-size: 30px;
+  margin-left: 1%;
+}
 .messages {
   height: 100%;
   width: 100%;
@@ -20,10 +23,11 @@ body {
 
 .card {
   background: #3e505b !important;
-  margin-bottom: 1.25%;
+  margin-bottom: 0;
   color: #efefef;
   border-radius: 20px;
   border: transparent !important;
+  z-index: 2 !important;
 }
 
 .card-title {
@@ -43,8 +47,8 @@ textarea {
   margin: 0 !important;
   padding: 10px;
   color: #004766 !important;
-  position: sticky;
-  bottom:0;
+  position: sticky !important;
+  bottom: 0;
   -webkit-appearance: none;
   border-radius: 0;
   outline: none;
@@ -53,6 +57,7 @@ textarea {
   height: auto;
   margin-left: 10px !important;
   margin-right: 10px !important;
+  z-index: 1 !important;
 }
 
 input {
@@ -76,17 +81,34 @@ input {
 }
 
 .input-container {
+  height: auto;
+  margin: 0;
   padding: 5px;
+  position: sticky !important;
+  bottom: 0 !important;
+  padding-bottom: 0px;
+  z-index: 0 !important;
 }
 
 #comment {
   background-color: white;
   resize: none;
   margin: 0;
+  position: sticky !important;
+  bottom: 0 !important;
 }
 
-.typing{
+#form {
+  z-index: -2 !important;
+}
+
+.typing {
   color: white;
+  margin-left: 20px;
+}
+
+#slashmenu {
+  height: 10%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -103,6 +125,7 @@ input {
   .ring {
     color: black !important;
   }
+
   #form > input {
     margin: 0 auto;
     margin-left: auto;

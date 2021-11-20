@@ -4,7 +4,7 @@ textarea {
 
 @media only screen and (max-width: 600px) {
   textarea {
-    width: 100%;
+    max-width: 100% !important;
   }
 }
 

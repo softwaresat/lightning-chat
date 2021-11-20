@@ -41,10 +41,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
 }));
-  db2.all("SELECT count(*) as num from credentials;", [undefined],async (err, result) => {
-   console.log("There are currently "+result[0].num+" accounts!")
+db2.all("SELECT count(*) as num from credentials;", [undefined], async (err, result) => {
+  console.log("There are currently " + result[0].num + " accounts!")
 
-  })
+})
 var bodyParser = require('body-parser')
 setInterval(function() {
   db2.all("SELECT * FROM chatroom where reset = true", async (err, result) => {
@@ -84,10 +84,7 @@ app.use(cookieParser());
 app.set('trust proxy', true);
 io.on('connection', (socket) => {
   socket.on('chat message', async function(msg, author) {
-    var text = msg.trim().split(' ');
-    var author = author;
-    var hasCursed = false;
-    var profanityFilter = require('simple-profanity-filter');
+
     var Filter = require('bad-words');
     var filter1 = new Filter();
     var messages = {
@@ -95,13 +92,12 @@ io.on('connection', (socket) => {
       text: filter1.clean(msg)
     }
 
-    console.log(msg)
-    if (msg != ' ') {
 
-      db2.run('insert into messages(user, text) values(?,?)', [author, filter1.clean(msg)])
-      io.emit('message', messages);
+    db2.run('insert into messages(user, text) values(?,?)', [author, filter1.clean(msg)])
 
-    }
+    io.emit('message', messages);
+
+
 
   })
   socket.on('chatroom message', async function(msg, author, chatroom) {
@@ -267,42 +263,39 @@ app.post('/newroom', async function(request, response) {
 app.post('/auth', async function(request, response) {
   var username = request.body.username;
   var password = request.body.password;
+  var finalResult;
   if (username && password) {
 
     db2.all('SELECT * FROM credentials', async (err, results) => {
       results.forEach(result => {
 
         if (result.username == username && result.password == password) {
-          if (result.verified == null) {
-            response.send('Please verify your email!')
+          finalResult = result;
+        }
+      });
+      if(finalResult == undefined){
+        response.send('Incorrect Username and/or Password!');
+            response.end();
+            return
           }
+      else if (finalResult.verified == null) {
+            response.send('Please verify your email!')
+            response.end();
+            return
+          }
+          
           else {
             request.session.loggedin = true;
             request.session.username = username;
 
             request.session.name = username
-            if (result.type == 'Mod') {
-              request.session.moderator = true;
-              request.session.loggedin = true;
-              response.cookie('hi', 'session', {
-                maxAge: 900000,
-                httpOnly: false
-              });
-              response.redirect(request.session.originalURL || '/');
 
-            } else {
+            response.redirect(request.session.originalURL || '/');
+                        response.end();
 
-              response.redirect(request.session.originalURL || '/');
-
-            }
             return
           }
-        }
-      });
-      if (request.session.loggedin != true) {
-        response.send('Incorrect Username and/or Password!');
-        response.end();
-      }
+    
     })
   } else {
     response.send('Please enter Username and Password!');
