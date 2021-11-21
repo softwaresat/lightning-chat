@@ -281,7 +281,7 @@ app.post('/auth', async function(request, response) {
         return
       }
       else if (finalResult.verified == null) {
-        response.send('Please verify your email!')
+        response.send('Please verify your email! The verification email may take a couple minutes to arrive.')
         response.end();
         return
       }
