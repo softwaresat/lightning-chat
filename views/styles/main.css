@@ -13,7 +13,14 @@ body {
 .fa-image{
   font-size: 30px;
   margin-left: 1%;
+  margin-top: -5%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
+
 .messages {
   height: 100%;
   width: 100%;
@@ -68,7 +75,9 @@ input {
 .buttons {
   visibility: hidden;
 }
-
+#image{
+  border-radius: 0;
+}
 #formItem label {
   display: inline-block;
   text-align: center;

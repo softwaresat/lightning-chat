@@ -45,6 +45,7 @@ db2.all("SELECT count(*) as num from credentials;", [undefined], async (err, res
   console.log("There are currently " + result[0].num + " accounts!")
 
 })
+
 var bodyParser = require('body-parser')
 setInterval(function() {
   db2.all("SELECT * FROM chatroom where reset = true", async (err, result) => {
@@ -63,6 +64,7 @@ setInterval(function() {
   db2.all("SELECT * FROM messages where chatroom is null order by id asc", async (err, result) => {
     if (result[0] == undefined) {
       db2.run('insert into messages(user, text) values(?,?)', ['ADMIN', 'Welcome to Lightning Chat!'])
+
 
     }
 
@@ -273,29 +275,29 @@ app.post('/auth', async function(request, response) {
           finalResult = result;
         }
       });
-      if(finalResult == undefined){
+      if (finalResult == undefined) {
         response.send('Incorrect Username and/or Password!');
-            response.end();
-            return
-          }
+        response.end();
+        return
+      }
       else if (finalResult.verified == null) {
-            response.send('Please verify your email!')
-            response.end();
-            return
-          }
-          
-          else {
-            request.session.loggedin = true;
-            request.session.username = username;
+        response.send('Please verify your email!')
+        response.end();
+        return
+      }
 
-            request.session.name = username
+      else {
+        request.session.loggedin = true;
+        request.session.username = username;
 
-            response.redirect(request.session.originalURL || '/');
-                        response.end();
+        request.session.name = username
 
-            return
-          }
-    
+        response.redirect(request.session.originalURL || '/');
+        response.end();
+
+        return
+      }
+
     })
   } else {
     response.send('Please enter Username and Password!');

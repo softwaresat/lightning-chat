@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="frontend-scripts/notifications.js"></script>
 
 </head>
     <body>
@@ -50,6 +51,16 @@
      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style='background-color:#004766; margin-bottom: 20%;'>
   <div class="container-fluid">
     <a style="color: #ffd166;"class="navbar-brand" href="/">Lightning ⚡</a>
+    <button id="enable" type="button" class="btn btn-warning" onclick="askNotificationPermission()">Enable Notifications</button>
+                  <script>
+          notificationBtn = document.getElementById("enable");
+
+    if(Notification.permission === 'denied' || Notification.permission === 'default') {
+      notificationBtn.style.display = 'block';
+    } else {
+      notificationBtn.style.display = 'none';
+    }
+      </script>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -124,7 +135,7 @@ last.style.visibility = 'visible'
   <div class="card" style="width: 100%;float:right;margin-top: 4%;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong><%= result.user %></strong>: <%= result.text %></p>
+      <p><strong><%= result.user %></strong>: <%- result.text %></p>
 
 </div>
 </div>
@@ -143,7 +154,7 @@ last.style.visibility = 'visible'
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong><%= result.user %></strong>: <%= result.text %></p>
+      <p><strong><%= result.user %></strong>: <%- result.text %></p>
 
 </div>
 </div>
@@ -170,9 +181,8 @@ last.style.visibility = 'visible'
 
 
 </div>
-<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
-<script type="text/javascript" src="/richtexteditor/rte.js"></script>
-<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+<script src="https://kit.fontawesome.com/ce3c8c944f.js" crossorigin="anonymous"></script>
+
 <input name = 'name' id = 'name' style="font-family:sans-serif;font-size:1em;"type='hidden' value = <%=name1%> required />
 <input name = 'roomname' id = 'roomname' style="font-family:sans-serif;font-size:1em;"type='hidden' value = "<%=roomname%>" required />
 
@@ -185,7 +195,53 @@ last.style.visibility = 'visible'
 <br>
 <button style="display:none"id = 't'type="submit" value="Submit" class='btn btn-success'></button>
 </form>
+<script>
+function imageSend(){
+  var socket = io()
 
+ let uri = $("#image").val().split('?')[0];
+    //moving on, split the uri into parts that had dots before them
+    var parts = uri.split('.');
+    //get the last part ( should be the extension )
+    var extension = parts[parts.length-1];
+    //define some image types to test against
+    var imageTypes = ['jpg','jpeg','tiff','png','gif','bmp'];
+    //check if the extension matches anything in the list.
+        if(imageTypes.indexOf(extension) !== -1) {
+
+socket.emit('chatroom message', "<img style='width: 15%;'src='"+$("#image").val()+"'>", $('#name').val(), $('#roomname').val());
+$("#comment").val(' ');
+return false;
+}
+else{
+socket.emit('chatroom message', "That is an invalid image, "+$('#name').val()+"!", "Admin", $('#roomname').val());
+$("#comment").val(' ');
+}
+}
+
+</script>
+
+<a data-bs-toggle="modal" data-bs-data-bs-toggle="modal" data-bs-target='#modalforimage'><span id="images"><i class="far fa-image"></i></span></a>
+ <div class="modal fade" id='modalforimage' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image Link</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            <form id="form_id" name="myform">
+
+      <div class="modal-body">
+      <input type='text' name='image' id='image'></input>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="submit" onclick='imageSend()'class="btn btn-primary" data-bs-dismiss="modal" >Send</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 <script>
 
                 $(document).scrollTop($(document).height());
@@ -206,6 +262,9 @@ input.addEventListener("keyup", function(event) {
 </script>
 <script>
    function addMessages(message){
+
+    createNotification(message.user);
+
    if(message.chatroom == $('#roomname').val()){
    $("#messages").append(`
        <div class="card" style="width: 100%;float:right;">

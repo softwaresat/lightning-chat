@@ -40,7 +40,15 @@ function checkNotificationPromise() {
   }
 
 function createNotification(user) {
-  var img = '../static/lightning-512.png';
-  var text = user + ' sent a message on Lightning!';
-  var notification = new Notification('Lightning Chat', { body: text, icon: img });
+
+  if (!document.hasFocus()) {
+    var img = '../static/lightning-512.png';
+    var text = user + ' sent a message on Lightning!';
+    var notification = new Notification('Lightning Chat', { body: text, icon: img });
+
+    notification.onclick = function() {
+                         window.parent.focus();
+                         notification.close();
+                        }
+  }
 }

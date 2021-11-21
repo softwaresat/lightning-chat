@@ -16,11 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
    
 <style>
-  body{
-    font-family: 'Roboto', sans-serif; 
-    font-weight:300;
-    font-size: large;
-  }
+  
   .card-title{
     font-size: xx-large;
   }
@@ -30,27 +26,54 @@
 </style>
 </head>
     <body>
-       <nav class="navbar navbar-expand-lg navbar-dark" style='background-color:#004766;'>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style='background-color:#004766; margin-bottom: 20%;'>
   <div class="container-fluid">
-    <a style="color: #ffd166;"class="navbar-brand" href="/">Lightning ⚡</a>
+    <a class="navbar-brand" style="color: #ffd166"href="/">Lightning ⚡</a>
+   
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-       <% if(loggedin == true){ %>
+       
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/chatrooms">Chatrooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/newchatroom">New Chatroom</a>
+        </li>
+      </ul>
+      <% if(loggedin == true){ %>
                <h5 class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style='color: #b7b7b7;'aria-expanded="false">
             <%=name1%>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/account">Account</a></li>
-            <li><a class="dropdown-item" href="/chatrooms">Chatrooms</a></li>
-            <li><a class="dropdown-item" href="/newchatroom">New Chatroom</a></li>
+            
+ 
+                
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+      
 
-                <% } %>
+
+          </ul>
+            
+     
+        </li>
         
+              <% }else{ %>
+
+      <form class="d-flex">
+          <a class="btn btn-outline-success" style = 'margin-right: 5%;'href='/login'>Login</a>
+        
+      </form>
+                    <% } %>
     </div>
+    </div>
+    
   </div>
 </nav>
 
@@ -70,7 +93,7 @@
   
  
 
-  <div class="card" style="width: 100%;float:right;">
+  <div class="card" style="width: 100%;float:right; margin-top: 5%;">
     <div class="card-body" id = <%= result.name%> style = 'text-align:center;'>
       <h5 style="color: white;"class="card-title"><%= result.name %></h5>
       <p style='color:white; font-size:medium;'><%=result.author%></p>
@@ -92,7 +115,7 @@
   
  
 
-  <div class="card" style="width: 100%;float:right;">
+  <div class="card" style="width: 100%;float:right;margin-top: 5%;">
     <div class="card-body" id = <%= result.name%> style = 'text-align:center;'>
       <h5 class="card-title"><%= result.name %></h5>
       <a href= <%='/room?name='+encodeURIComponent(result.name)%> class="btn btn-primary">Join</a>

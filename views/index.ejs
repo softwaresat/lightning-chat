@@ -41,16 +41,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-       <% if(loggedin == true){ %>
+       
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/chatrooms">Chatrooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/newchatroom">New Chatroom</a>
+        </li>
+      </ul>
+      <% if(loggedin == true){ %>
                <h5 class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style='color: #b7b7b7;'aria-expanded="false">
             <%=name1%>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/account">Account</a></li>
-            <li><a class="dropdown-item" href="/chatrooms">Chatrooms</a></li>
-            <li><a class="dropdown-item" href="/newchatroom">New Chatroom</a></li>
-
+            
+ 
                     <% if(item[0].type == 'Mod'){ %>
 
                                   <% } %>
@@ -59,7 +67,10 @@
 
 
           </ul>
+            
+     
         </li>
+        
               <% }else{ %>
 
       <form class="d-flex">
@@ -68,6 +79,8 @@
       </form>
                     <% } %>
     </div>
+    </div>
+    
   </div>
 </nav>
      <script>
@@ -109,7 +122,7 @@ last.style.visibility = 'visible'
   <div class="card" style="width: 100%;float:right;margin-top: 4%;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
+      <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%- result.text %></p>
 
 </div>
 </div>
@@ -128,7 +141,7 @@ last.style.visibility = 'visible'
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-        <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%= result.text %></p>
+        <p><strong style="color: #b7b7b7;"><%= result.user %></strong>: <%- result.text %></p>
 
 </div>
 </div>
@@ -167,45 +180,59 @@ last.style.visibility = 'visible'
   <textarea name="comment" id="comment" required> </textarea>
 
 </div>
-<script>
-function dragon(){
-var socket = io()
-socket.emit('chat message', "<img src='https://th.bing.com/th/id/OIP.q6fMQucrhcnudk1IPOYq2wHaEo?pid=ImgDet&rs=1'>", $('#name').val());
-$("#comment").val(' ');
-return false;
-}
-$(document).keypress(function(event){
-setTimeout(
-function(){
-if(document.getElementById("comment").value == ' /'){
-        document.getElementById("slashmenu").innerHTML =
-        `
-         <div style = "background-color: white; color: black; height: 5%;">
-/<button onclick="dragon()">dragon</button>
-<br>
-/cat
-<br>
-/dog
-
-      </div>
-         `
-                                 $(document).scrollTop($(document).height());
-
-        }
-               else{
-
-          $('#slashmenu').text("")
-    
-               }         
-
-        }, 500)
-        });
-</script>
 <input type="hidden" id = 'author' name = 'author'value="<%=name1%>">  
 <br>
 <br>
 <button style="display:none"id = 't'type="submit" value="Submit" class='btn btn-success'></button>
 </form>
+<script>
+function imageSend(){
+    var socket = io()
+
+ let uri = $("#image").val().split('?')[0];
+    //moving on, split the uri into parts that had dots before them
+    var parts = uri.split('.');
+    //get the last part ( should be the extension )
+    var extension = parts[parts.length-1];
+    //define some image types to test against
+    var imageTypes = ['jpg','jpeg','tiff','png','gif','bmp'];
+    //check if the extension matches anything in the list.
+    if(imageTypes.indexOf(extension) !== -1) {
+socket.emit('chat message', "<img style='width: 15%;'src='"+$("#image").val()+"'>", $('#name').val());
+$("#comment").val(' ');
+return false;
+}
+    
+else{
+socket.emit('chat message', "That is an invalid image, "+$('#name').val()+"!", "Admin");
+$("#comment").val(' ');
+}
+}
+</script>
+
+<a data-bs-toggle="modal" data-bs-data-bs-toggle="modal" data-bs-target='#modalforimage'><span id="images"><i class="far fa-image"></i></span></a>
+ <div class="modal fade" id='modalforimage' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image Link</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            <form id="form_id" name="myform">
+
+      <div class="modal-body">
+      
+      <input type='text' name='image' id='image'></input>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="submit" onclick='imageSend()'class="btn btn-primary" data-bs-dismiss="modal" >Send</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <script>
 
@@ -227,7 +254,7 @@ input.addEventListener("keyup", function(event) {
 </script>
 <script>
    function addMessages(message){
-   
+      
     createNotification(message.user);
 
    $("#messages").append(`
