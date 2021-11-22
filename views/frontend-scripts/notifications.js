@@ -5,7 +5,7 @@ function askNotificationPermission() {
 
     notificationBtn = document.getElementById("enable");
 
-    if(Notification.permission === 'denied' || Notification.permission === 'default') {
+    if (Notification.permission === 'denied' || Notification.permission === 'default') {
       notificationBtn.style.display = 'block';
     } else {
       notificationBtn.style.display = 'none';
@@ -16,11 +16,11 @@ function askNotificationPermission() {
   if (!('Notification' in window)) {
     console.log("This browser does not support notifications.");
   } else {
-    if(checkNotificationPromise()) {
+    if (checkNotificationPromise()) {
       Notification.requestPermission()
-      .then((permission) => {
-        handlePermission(permission);
-      })
+        .then((permission) => {
+          handlePermission(permission);
+        })
     } else {
       Notification.requestPermission(function(permission) {
         handlePermission(permission);
@@ -30,25 +30,25 @@ function askNotificationPermission() {
 }
 
 function checkNotificationPromise() {
-    try {
-      Notification.requestPermission().then();
-    } catch(e) {
-      return false;
-    }
-
-    return true;
+  try {
+    Notification.requestPermission().then();
+  } catch (e) {
+    return false;
   }
+
+  return true;
+}
 
 function createNotification(user) {
 
-  if (!document.hasFocus()) {
+  if (document.hidden) {
     var img = '../static/lightning-512.png';
     var text = user + ' sent a message on Lightning!';
     var notification = new Notification('Lightning Chat', { body: text, icon: img });
 
     notification.onclick = function() {
-                         window.parent.focus();
-                         notification.close();
-                        }
+      window.parent.focus();
+      notification.close();
+    }
   }
 }

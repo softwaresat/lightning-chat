@@ -1,6 +1,6 @@
 html, body {
   overflow-x:hidden;
-} 
+}
 
 body {
   background: #3e505b !important;
@@ -10,17 +10,24 @@ body {
   font-weight:300;
   font-size: large;
 }
-.fa-image{
+.fa-image {
   font-size: 30px;
-  margin-left: 1%;
-  margin-top: -5%;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   background-color: white;
   border-radius: 5px;
   padding: 2px;
   padding-left: 3px;
   padding-right: 3px;
+  cursor: pointer;
 }
-
+.timestamps{
+  font-size: small;
+}
+#first{
+  margin-top:100px;
+}
 .messages {
   height: 100%;
   width: 100%;
@@ -40,6 +47,11 @@ body {
 .card-title {
   font-size: xx-large;
   background-color: "#731768 !important";
+}
+
+.card-body {
+  padding: 10px !important;
+  display: inline-block;
 }
 
 li:hover {
@@ -109,6 +121,7 @@ input {
 
 #form {
   z-index: -2 !important;
+  display: none;
 }
 
 .typing {
@@ -118,6 +131,24 @@ input {
 
 #slashmenu {
   height: 10%;
+}
+
+.chat-image {
+  width: 50%;
+  height: auto;
+  margin: 0;
+  margin-left: 2rem;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.buffer {
+    visibility: hidden;
+}
+
+.toConvert a, .toConvert h1, .toConvert h2, .toConvert h3, .toConvert h4, .toConvert h5, .toConvert h6, .toConvert p, .toConvert div, .toConvert span, .toConvert em, .toConvert b, .toConvert i, .toConvert strong {
+
+display: inline-block;
 }
 
 @media only screen and (max-width: 600px) {
@@ -142,6 +173,11 @@ input {
   }
   .sidenav {
     display: none;
+  }
+  .chat-image {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 }

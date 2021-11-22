@@ -14,6 +14,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var crypto = require("crypto");
 var sha256 = crypto.createHash("sha256");
+var showdown = require('showdown');
+var converter = new showdown.Converter();
 
 const generateRandomAnimalName = require('random-animal-name-generator')
 
@@ -85,24 +87,36 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.set('trust proxy', true);
 io.on('connection', (socket) => {
-  socket.on('chat message', async function(msg, author) {
-
+  socket.on('chat message', async function(msg, author, date) {
     var Filter = require('bad-words');
     var filter1 = new Filter();
-    var messages = {
-      user: author,
-      text: filter1.clean(msg)
+
+    var messages;
+    try {
+      messages = {
+        user: author,
+        text: filter1.clean(msg),
+        date: date
+      }
+      db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, filter1.clean(msg), new Date().getTime().toString()])
     }
+    catch (err) {
+      messages = {
+        user: author,
+        text: msg,
+        date: date
+      }
+      db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, msg, new Date().getTime().toString()])
+    }    //db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, filter1.clean(msg), new Date().getTime().toString()])
 
-
-    db2.run('insert into messages(user, text) values(?,?)', [author, filter1.clean(msg)])
 
     io.emit('message', messages);
 
 
 
   })
-  socket.on('chatroom message', async function(msg, author, chatroom) {
+
+  socket.on('chatroom message', async function(msg, author, chatroom, date) {
     var text = msg.trim().split(' ');
     var profanityFilter = require('simple-profanity-filter');
 
@@ -113,8 +127,10 @@ io.on('connection', (socket) => {
 
     var messages = {
       user: author,
+      //text: filter1.clean(msg),
       text: filter1.clean(msg),
-      chatroom: chatroom
+      chatroom: chatroom,
+      date: date
     }
     var hasCursed = false;
     var filter = true;
@@ -130,9 +146,10 @@ io.on('connection', (socket) => {
 
       if (msg != ' ' && hasCursed == false) {
         if (result[0].filter == 0) {
-          db2.run('insert into messages(user, text, chatroom) values(?,?,?)', [author, msg, chatroom])
+          db2.run('insert into messages(user, text, chatroom, timenumber) values(?,?,?,?)', [author, msg, chatroom, new Date().getTime().toString()])
         } else {
-          db2.run('insert into messages(user, text, chatroom) values(?,?,?)', [author, filter1.clean(msg), chatroom])
+          //db2.run('insert into messages(user, text, chatroom) values(?,?,?)', [author, filter1.clean(msg), chatroom])
+          db2.run('insert into messages(user, text, chatroom,timenumber) values(?,?,?,?)', [author, filter1.clean(msg), chatroom, new Date().getTime().toString()])
         }
         io.emit('chatroommessage', messages);
 
@@ -147,6 +164,7 @@ io.on('connection', (socket) => {
       io.emit('display', data)
   })
 })
+
 app.get('/', function(req, res) {
   if (req.session.loggedin == undefined) {
     res.redirect('/login')

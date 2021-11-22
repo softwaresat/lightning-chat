@@ -17,8 +17,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="frontend-scripts/notifications.js"></script>
+    <script src="https://unpkg.com/showdown@1.9.1/dist/showdown.min.js"></script>
+
+    <script src="frontend-scripts/markdown-eval.js"></script>
+
 
 </head>
     <body>
@@ -126,16 +131,21 @@ last.style.visibility = 'visible'
       
 
 
-    <% var count = 0 %>
+
+<script>
+var count = 0;
+   </script>   
+<% var count = 0 %>
 
 <% item.forEach(function (result) { %>
+
 <% count++ %>
 <% if(count == 1){ %>
 
-  <div class="card" style="width: 100%;float:right;margin-top: 4%;">
+  <div class="card" id='first' style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong><%= result.user %></strong>: <%- result.text %></p>
+      <p id=<%= count%>><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 
 </div>
 </div>
@@ -154,7 +164,7 @@ last.style.visibility = 'visible'
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p><strong><%= result.user %></strong>: <%- result.text %></p>
+        <p id=<%= count%>> <strong style="color: #b7b7b7;"><%= result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 
 </div>
 </div>
@@ -163,13 +173,29 @@ last.style.visibility = 'visible'
   </ul>
       
   
-<div style="background-color: #731768;font-size: small;">
+<div>
 
 
 </div>
 </div>
+
   <% } %>
 
+<script>
+count++
+var d = new Date(<%= result.timenumber %>);
+
+var localTime = d.getTime()
+var localOffset = d.getTimezoneOffset() * 60000;
+var utc = localTime + localOffset;
+ var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+offset = (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + "." + ("00" + (o % 60)).slice(-2)
+var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
+
+document.getElementById(count).title = finalDate
+        evalMarkdown(count)
+
+</script>
     <%})%>
   <div id='messages'>
 
@@ -184,11 +210,9 @@ last.style.visibility = 'visible'
 <script src="https://kit.fontawesome.com/ce3c8c944f.js" crossorigin="anonymous"></script>
 
 <input name = 'name' id = 'name' style="font-family:sans-serif;font-size:1em;"type='hidden' value = <%=name1%> required />
+ <% var date = new Date().getTime().toString()%>
+<input type="hidden" id = 'date' name = 'date'value="<%=date%>">  
 <input name = 'roomname' id = 'roomname' style="font-family:sans-serif;font-size:1em;"type='hidden' value = "<%=roomname%>" required />
-
-<div class="input-container">
-  <textarea name="comment" id="comment" required></textarea>
-</div>
 
 <input type="hidden" id = 'author' name = 'author'value="<%=name1%>">  
 <br>
@@ -209,12 +233,12 @@ function imageSend(){
     //check if the extension matches anything in the list.
         if(imageTypes.indexOf(extension) !== -1) {
 
-socket.emit('chatroom message', "<img style='width: 15%;'src='"+$("#image").val()+"'>", $('#name').val(), $('#roomname').val());
+socket.emit('chatroom message', '<a href="' + $("#image").val() + '">' + '<img class="chat-image" src="' + $("#image").val() + '"></a>', $('#name').val(), $('#roomname').val(),  $('#date').val());
 $("#comment").val(' ');
 return false;
 }
 else{
-socket.emit('chatroom message', "That is an invalid image, "+$('#name').val()+"!", "Admin", $('#roomname').val());
+socket.emit('chatroom message', "That is an invalid image, "+$('#name').val()+"!", "Admin", $('#roomname').val(),  $('#date').val());
 $("#comment").val(' ');
 }
 }
@@ -242,6 +266,15 @@ $("#comment").val(' ');
     </div>
   </div>
 </div>
+
+<div class="input-container">
+  <textarea name="comment" id="comment" required></textarea>
+</div>
+
+<div class="buffer">
+  <p>buffer</p>
+</div>
+
 <script>
 
                 $(document).scrollTop($(document).height());
@@ -261,23 +294,33 @@ input.addEventListener("keyup", function(event) {
 
 </script>
 <script>
-   function addMessages(message){
+     async function addMessages(message){
+      <% count++ %>
+    count++
+var d = new Date(parseInt(message.date));
 
+var localTime = d.getTime()
+var localOffset = d.getTimezoneOffset() * 60000;
+var utc = localTime + localOffset;
+ var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+offset = (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + "." + ("00" + (o % 60)).slice(-2)
+var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
     createNotification(message.user);
 
-   if(message.chatroom == $('#roomname').val()){
-   $("#messages").append(`
+      message.text = message.text.replace(/<\/?p[^>]*>/g,"")
+    $("#messages").append(`
        <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;color:"#731768"'>
 
-      <p><strong>${message.user}</strong>: ${message.text}</p>   
+      <p id=${count} title="${finalDate}"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
 </div>
       `)
-                $(document).scrollTop($(document).height());
-                }
+        if(!message.text.startsWith('<a')){
+        evalMarkdown(count)
+}
 
-   }
-  
+                $(document).scrollTop($(document).height());
+   }  
    </script>
    <script src="/socket.io/socket.io.js"></script>
 
@@ -310,7 +353,7 @@ $(document).ready(function(){
       })
  })
 $('form').submit(function(){
-socket.emit('chatroom message', $('#comment').val(), $('#name').val(), $('#roomname').val());
+socket.emit('chatroom message', $('#comment').val(), $('#name').val(), $('#roomname').val(), $('#date').val());
 $("#comment").val('');
 return false;
 })

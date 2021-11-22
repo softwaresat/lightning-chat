@@ -6,3 +6,9 @@
   margin-right: auto;
   text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .login-card {
+    width: 100%;
+  }
+}
