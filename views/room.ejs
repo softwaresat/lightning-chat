@@ -250,13 +250,13 @@ $("#comment").val(' ');
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Image Link</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Send the Image Address Link:</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
             <form id="form_id" name="myform">
 
       <div class="modal-body">
-      <input type='text' name='image' id='image'></input>
+      <input type='text' name='image' id='image' size='50'></input>
       </div>
       <div class="modal-footer">
        
@@ -284,7 +284,7 @@ var input = document.getElementById("comment");
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
+  if (event.keyCode === 13  && !event.shiftKey) {
     // Cancel the default action, if needed
     event.preventDefault();
     // Trigger the button element with a click

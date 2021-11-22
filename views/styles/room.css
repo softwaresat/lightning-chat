@@ -2,12 +2,6 @@ textarea {
     max-width: calc(100% - 230px) !important;
 }
 
-@media only screen and (max-width: 600px) {
-  textarea {
-    max-width: 100% !important;
-  }
-}
-
 .sidenav {
 white-space:nowrap;
 margin-top: 50px;
@@ -40,4 +34,10 @@ float: right;
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
+}
+
+@media only screen and (max-width: 600px) {
+  textarea {
+    max-width: 100% !important;
+  }
 }
