@@ -15,7 +15,7 @@ var io = require('socket.io')(http);
 var crypto = require("crypto");
 var sha256 = crypto.createHash("sha256");
 var showdown = require('showdown');
-var converter = new showdown.Converter();
+var converter = new showdown.Converter({simplifiedAutoLink: 'true'});
 
 const generateRandomAnimalName = require('random-animal-name-generator')
 

@@ -147,8 +147,11 @@ input {
 }
 
 .toConvert a, .toConvert h1, .toConvert h2, .toConvert h3, .toConvert h4, .toConvert h5, .toConvert h6, .toConvert p, .toConvert div, .toConvert span, .toConvert em, .toConvert b, .toConvert i, .toConvert strong {
-
-display: inline-block;
+  display: inline-block;
+  overflow: visible;
+  word-wrap: break-word;
+  white-space: initial;
+  z-index: 3;
 }
 
 @media only screen and (max-width: 600px) {

@@ -2,7 +2,7 @@ function evalMarkdown(count) {
 
  
   function convertToHtml(msg) {
-    var converter = new showdown.Converter();
+    var converter = new showdown.Converter({simplifiedAutoLink: 'true'});
     html = converter.makeHtml(msg);
     return html;
   }
