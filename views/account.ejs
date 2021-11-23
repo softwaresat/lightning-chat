@@ -97,12 +97,16 @@
   
   <%count++%>
   <%if (count == 1) {%>
-      <form id="form_id" method="POST" name="myform" action='editaccount'>
+      <form id="form_id" method="POST" name="myform" action='editaccount' enctype="multipart/form-data">
 
   <div class="card" style="width: 100%;float:right;">
     <div class="card-body" id = <%= result.name%> style = 'text-align:center;'>
       
      <input type="hidden" class="form-control" name='username' id="username" value="<%= result.username %>">
+      <label for="exampleFormControlInput1" class="form-label">Profile Picture</label>
+
+  <input style="margin-top: 5%;"type="file"  accept=".png" class="form-control" name='image' id="image">
+  
        <label for="exampleFormControlInput1" class="form-label">Password</label>
 
   <input style="margin-top: 5%;"type="text" class="form-control" name='password' id="password" value="<%= result.password %>">
@@ -111,7 +115,7 @@
       
       <p>        
        
-        <input class="btn btn-success" type="submit" onclick='send()' name=""/>
+        <input class="btn btn-success" type="submit" name=""/>
       </p>
     </form>
 

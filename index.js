@@ -15,6 +15,17 @@ var io = require('socket.io')(http);
 var crypto = require("crypto");
 var sha256 = crypto.createHash("sha256");
 var showdown = require('showdown');
+  const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (request, file, cb) {
+      cb(null, './views/pfps')
+    },
+    filename: function (request, file, cb) {
+      cb(null, request.body.username+'.'+file.originalname.substring(file.originalname.length-3))
+    }
+})
+var upload = multer({ storage: storage })
+
 var converter = new showdown.Converter({simplifiedAutoLink: 'true'});
 
 const generateRandomAnimalName = require('random-animal-name-generator')
@@ -43,7 +54,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
 }));
-
 // SQLITE Table Creation
 
 // db2.run(
@@ -100,6 +110,8 @@ setInterval(function() {
 
 
 app.use(express.static('views'))
+app.use(express.static('views/pfps'))
+
 app.use(express.static('.well-known'))
 
 app.use(express.json({
@@ -287,7 +299,7 @@ app.post('/newaccount', async function(request, response) {
 });
 
 // Edit Methods
-app.post('/editaccount', async function(request, response) {
+app.post('/editaccount', upload.single('image'), async function(request, response) {
   require('./EDIT_METHODS/editaccount.js')(request, response, db2);
 
 });

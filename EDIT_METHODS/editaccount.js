@@ -1,4 +1,5 @@
 module.exports = async function(request, response, db2) { 
+
 var username = await request.body.username;
   var password = await request.body.password;
   db2.all('SELECT * FROM credentials where username = ?',[username], async (err, results) => {
@@ -19,7 +20,9 @@ var username = await request.body.username;
     });
     request.session.name = username;
     response.redirect('/')
-  } else {
+  } 
+
+  else {
     response.send('Please enter the information!');
     response.end();
   }

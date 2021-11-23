@@ -6,6 +6,11 @@ body {
   font-weight:300;
   font-size: large;
 }
+
+a {
+  color: coral !important;
+}
+
 .card{
   background: white;
 }
@@ -20,7 +25,7 @@ body {
 }
 .btn-group button {
   background: #004766 !important;
-  border-color: #004766 !important;
+  border: transparent !important;
   color: white; /* White text */
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
@@ -35,6 +40,7 @@ body {
 }
 .form-control {
   background: #848383 !important;
+  border: transparent !important;
 }
 
 .btn-success {

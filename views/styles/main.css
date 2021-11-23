@@ -11,6 +11,11 @@ body {
   font-weight:300;
   font-size: large;
 }
+
+a {
+  color: coral !important;
+}
+
 .fa-image {
   font-size: 30px;
   margin-left: 1rem;
@@ -35,7 +40,11 @@ body {
   margin-bottom: 15px;
   border: transparent;
 }
-
+.btn-success {
+  background: #004766 !important;
+  border-color: #004766 !important;
+  width: 100%;
+}
 .card {
   background: #3e505b !important;
   margin-bottom: 0;
@@ -44,7 +53,10 @@ body {
   border: transparent !important;
   z-index: 2 !important;
 }
-
+.form-control {
+  background: #848383 !important;
+  border: transparent !important;
+}
 .card-title {
   font-size: xx-large;
   background-color: "#731768 !important";
@@ -157,7 +169,12 @@ input {
 .buffer {
     visibility: hidden;
 }
-
+.pfp {
+  height: 30px;
+  width: 30px;
+  margin-right: 0.5%;
+  border-radius: 20px;
+}
 .toConvert a, .toConvert h1, .toConvert h2, .toConvert h3, .toConvert h4, .toConvert h5, .toConvert h6, .toConvert p, .toConvert div, .toConvert span, .toConvert em, .toConvert b, .toConvert i, .toConvert strong {
   display: inline-block;
   overflow: visible;

@@ -127,7 +127,7 @@ var count = 0;
   <div class="card" id='first' style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p id=<%= count%>><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
+      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".png" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 
 </div>
 </div>
@@ -143,11 +143,12 @@ var count = 0;
 </div>
 
 <% }else{ %>
+
+
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-        <p id=<%= count%>> <strong style="color: #b7b7b7;"><%= result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
-
+      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".png" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 </div>
 </div>
       
@@ -265,7 +266,8 @@ $("#comment").val(' ');
 
 <script>
 
-                $(document).scrollTop($(document).height());
+$('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+
 // Get the input field
 var input = document.getElementById("comment");
 
@@ -300,14 +302,15 @@ var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
        <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;color:"#731768"'>
 
-      <p id=${count} title="${finalDate}"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
+      <p id=${count} title="${finalDate}"><img class="pfp" src="/pfps/${message.user}.png" onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
 </div>
       `)
         if(!message.text.startsWith('<a')){
         evalMarkdown(count)
 }
 
-                $(document).scrollTop($(document).height());
+$('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+
                
    }  
    
@@ -315,7 +318,8 @@ var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
    <script src="/socket.io/socket.io.js"></script>
 
 <script>
-                $(document).scrollTop($(document).height());
+$('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+
 
 $(function (){
 var socket = io()
