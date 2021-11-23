@@ -50,7 +50,8 @@ web_modules/
 
 # Optional npm cache directory
 .npm
-
+*.png
+*.jpg
 # Optional eslint cache
 .eslintcache
 
