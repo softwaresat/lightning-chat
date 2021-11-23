@@ -238,7 +238,7 @@ $("#comment").val(' ');
 return false;
 }
 else{
-socket.emit('chatroom message', "That is an invalid image, "+$('#name').val()+"!", "Admin", $('#roomname').val(),  $('#date').val());
+alert("That is an invalid image!")
 $("#comment").val(' ');
 }
 }

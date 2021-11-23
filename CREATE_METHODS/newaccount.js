@@ -1,6 +1,8 @@
 module.exports = async function(request, response, db2, nodemailer, transporter) { 
   var username = await request.body.username;
   var password = await request.body.password;
+  var crypto = require("crypto");
+  var sha256 = crypto.createHash("sha256");
     var email = await request.body.email;
     var random = require('random-string-alphanumeric-generator');
 

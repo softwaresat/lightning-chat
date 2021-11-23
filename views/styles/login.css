@@ -1,10 +1,54 @@
+body {
+  background: #3e505b !important;
+  color: black;
+  background: '#def28d' !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-weight:300;
+  font-size: large;
+}
+.card{
+  background: white;
+}
 .login-card {
+  color: black;
   height: 30rem;
   width: 30rem;
   margin-top: 5rem;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+.btn-group button {
+  background: #004766 !important;
+  border-color: #004766 !important;
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+#signup {
+  border-color: #cf9100;
+  color: #cf9100;
+}
+#signup.hover{
+  background: yellow;
+}
+.form-control {
+  background: #848383 !important;
+}
+
+.btn-success {
+  background: #004766 !important;
+  border-color: #004766 !important;
+  width: 100%;
+}
+
+.footer {
+  height: 15px;
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  color: #efefef;
 }
 
 @media only screen and (max-width: 600px) {

@@ -11,10 +11,12 @@
                  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
 <link rel="shortcut icon" type="image/jpg" href="https://media.discordapp.net/attachments/761286162333171734/904834737888198726/unknown.png"/>
+    <script src="frontend-scripts/markdown-eval.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script src="https://unpkg.com/showdown@1.9.1/dist/showdown.min.js"></script>
-<script src="frontend-scripts/markdown-eval.js"></script>
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,7 +222,7 @@ return false;
 }
     
 else{
-socket.emit('chat message', "That is an invalid image, "+$('#name').val()+"!", "Admin",  $('#date').val());
+alert("That is an invalid image!")
 $("#comment").val(' ');
 }
 }
@@ -231,14 +233,14 @@ $("#comment").val(' ');
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Send the Image Address Link:</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Send Image Address Link:</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
             <form id="form_id" name="myform">
 
       <div class="modal-body">
       
-      <input type='text' name='image' id='image' size='50'></input>
+      <input size="50" type='text' name='image' id='image'></input>
       </div>
       <div class="modal-footer">
        
@@ -250,10 +252,11 @@ $("#comment").val(' ');
 </div>
 
 
-<div id='comment' class="input-container" contentEditable= "true">
+<div class="input-container">
+
+  <textarea name="comment" id="comment" required> </textarea>
 
 </div>
-  <input type='hidden' id='realComment' name='comment'>
 
 <div class="buffer">
   <p>buffer</p>
@@ -268,11 +271,10 @@ var input = document.getElementById("comment");
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13 && !event.shiftKey) {
+  if (event.keyCode === 13) {
     // Cancel the default action, if needed
     event.preventDefault();
     // Trigger the button element with a click
-    document.getElementById('realComment').value =  document.getElementById('comment').innerText
     document.getElementById("t").click();
   }
 });
@@ -312,6 +314,8 @@ var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
    <script src="/socket.io/socket.io.js"></script>
 
 <script>
+                $(document).scrollTop($(document).height());
+
 $(function (){
 var socket = io()
 var typing=false;
@@ -343,10 +347,9 @@ $(document).ready(function(){
       })
  })
 $('form').submit(function(){
-if($('#realComment').val() != ' '){ 
-socket.emit('chat message', $('#realComment').val(), $('#name').val(), $('#date').val());
-$("#realComment").val(' ');
-document.getElementById("comment").innerText='';
+if($('#comment').val() != ' '){ 
+socket.emit('chat message', $('#comment').val(), $('#name').val(), $('#date').val());
+$("#comment").val(' ');
 return false;
 }
 else{

@@ -21,10 +21,7 @@ function evalMarkdown(count) {
 
 
   }
-else{
 
-
-}
   }
 
 }

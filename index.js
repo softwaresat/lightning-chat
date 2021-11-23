@@ -88,7 +88,6 @@ app.use(cookieParser());
 app.set('trust proxy', true);
 io.on('connection', (socket) => {
   socket.on('chat message', async function(msg, author, date) {
-    console.log(msg)
     var Filter = require('bad-words');
     var filter1 = new Filter();
 
