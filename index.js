@@ -65,7 +65,7 @@ app.use(session({
 
 // -- messages definition
 
-// CREATE TABLE messages(text text, user varchar(100), id auto_increment primary_key, chatroom varchar(100), time timestamp, timezone varchar(100), timenumber varchar(1000));
+// CREATE TABLE messages(text text, user varchar(100), id auto_increment primary_key, chatroom varchar(100), timenumber varchar(1000));
 // `
 // )
 db2.all("SELECT count(*) as num from credentials;", [undefined], async (err, result) => {

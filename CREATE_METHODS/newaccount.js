@@ -20,7 +20,34 @@ const data = await apicall.json();
     await db2.all('select * from credentials where username = ?', [username], async function(error, results, fields) {
 if(data.success == true && (results == undefined || results[0] == undefined)){
   let verificationcode = random.randomAlphanumeric(10, "lowercase")
-  let code =  `<p>Dear `+username+',</p>'+
+
+
+   await db2.run('insert into credentials(email, username, password, type, verificationcode) values(?, ?,?,?, ?)', [email, username, password, 'User', verificationcode])
+
+let code =  `<p>Dear `+username+',</p>'+
+'<p>Please verify your email with this link</p>'+
+  `<p><a href="https://www.lightningchat.live/verifyemail?code=`+verificationcode+`">Link</a></p>`+
+  `<p>Or</p>`+
+    `<p><a href="https://chatapp.satvikagarwal.repl.co/verifyemail?code=`+verificationcode+`">School Link</a></p>`
+
+  +
+`<p>Thanks,</p>
+  <p>The Lightning Chat Team</p>
+  `
+   mailOptions = {
+  from: 'lightningchat5@gmail.com',
+  to: email,
+  subject: 'Verify your email!',
+  html: code
+};
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+  code =  `<p>Dear `+username+',</p>'+
   `
   <p>Thank you for registering on Lightning Chat. We wish to improve your communication and collaboration through our lightning-fast platform! Lightning Chat has unique features and a growing base. Users like you keep us going, and one day we hope to make Lightning Chat an amazing place! If you have any questions or concerns, don't hesitate to email us back. This isn't a no-reply email, so we will check our messages frequently. You can also contact us via our <a href="https://discord.gg/fdv4W7r9nm">Discord Server</a>!</p>
 <br>
@@ -36,9 +63,7 @@ if(data.success == true && (results == undefined || results[0] == undefined)){
   <p>Thanks,</p>
   <p>The Lightning Chat Team</p>
   `
-
-   await db2.run('insert into credentials(email, username, password, type, verificationcode) values(?, ?,?,?, ?)', [email, username, password, 'User', verificationcode])
-   var mailOptions = {
+     var mailOptions = {
   from: process.env['email'],
   to: email,
   subject: 'Welcome to Lightning Chat!',
@@ -52,30 +77,7 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Email sent: ' + info.response);
   }
 });
-code =  `<p>Dear `+username+',</p>'+
-'<p>Please verify your email with this link</p>'+
-  `<p><a href="https://www.lightningchat.live/verifyemail?code=`+verificationcode+`">Link</a></p>`+
-  `<p>Or</p>`+
-    `<p><a href="https://chatapp.satvikagarwal.repl.co/verifyemail?code=`+verificationcode+`">School Link</a></p>`
 
-  +
-`<p>Thanks,</p>
-  <p>The Lightning Chat Team</p>
-  `
-
- mailOptions = {
-  from: 'lightningchat5@gmail.com',
-  to: email,
-  subject: 'Verify your email!',
-  html: code
-};
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
        response.send("Please check your email to verify your account!")
 
 }
