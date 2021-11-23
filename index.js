@@ -43,6 +43,31 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
 }));
+
+// SQLITE Table Creation
+
+// db2.run(
+// `
+// -- chatroom definition
+
+// CREATE TABLE chatroom(name varchar(100), author varchar(100), id int primary_key auto_increment, private bool, link varchar(200), filter bool, reset bool);
+
+
+// -- credentials definition
+
+// CREATE TABLE credentials(id int auto_increment, username varchar(100), password varchar(100), type varchar(50), email varchar(100), verificationcode varchar(100), verified bool, name VARCHAR, author VARCHAR, private BOOL, link VARCHAR, "filter" BOOL, reset BOOL);
+
+
+// -- joinedRooms definition
+
+// CREATE TABLE joinedRooms(name varchar(100), person varchar(100));
+
+
+// -- messages definition
+
+// CREATE TABLE messages(text text, user varchar(100), id auto_increment primary_key, chatroom varchar(100), time timestamp, timezone varchar(100), timenumber varchar(1000));
+// `
+// )
 db2.all("SELECT count(*) as num from credentials;", [undefined], async (err, result) => {
   console.log("There are currently " + result[0].num + " accounts!")
 
