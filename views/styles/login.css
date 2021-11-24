@@ -1,6 +1,6 @@
 body {
   background: #3e505b !important;
-  color: black;
+  color: #efefef;
   background: '#def28d' !important;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
   font-weight:300;
@@ -37,6 +37,12 @@ a {
 }
 #signup.hover{
   background: yellow;
+}
+.nam3 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  text-align: center;
 }
 .form-control {
   background: #848383 !important;

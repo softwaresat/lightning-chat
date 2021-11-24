@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
       cb(null, './views/pfps')
     },
     filename: function (request, file, cb) {
-      cb(null, request.body.username+'.'+file.originalname.substring(file.originalname.length-3))
+      cb(null, request.body.username+'.png')
     }
 })
 var upload = multer({ storage: storage })
@@ -49,10 +49,11 @@ var mailOptions = {
 
 var db2 = new sqlite3.Database('chat.db');
 app.use(session({
-  secret: 'faeb4453e5d14fe6f6d04637f78077c76c73d1b4',
+  secret: process.env['secret'],
   proxy: true,
   resave: true,
   saveUninitialized: true,
+  expires: new Date(Date.now() + (30 * 86400 * 1000))
 }));
 // SQLITE Table Creation
 
@@ -111,6 +112,7 @@ setInterval(function() {
 
 app.use(express.static('views'))
 app.use(express.static('views/pfps'))
+app.use(express.static('views/static'))
 
 app.use(express.static('.well-known'))
 
@@ -245,13 +247,24 @@ app.get('/logout', function(req, res) {
 
 })
 app.get('/login', function(req, res) {
+  if (req.session.loggedin != undefined) {
+    res.redirect('/')
+    return;
+  }
+  else{
   res.sendFile('login.html', {
+    root: './views'
+  });
+  }
+})
+app.get('/signup', function(req, res) {
+  res.sendFile('signup.html', {
     root: './views'
   });
 
 })
-app.get('/signup', function(req, res) {
-  res.sendFile('signup.html', {
+app.get('/help', function(req, res) {
+  res.sendFile('help.html', {
     root: './views'
   });
 
@@ -333,7 +346,6 @@ app.post('/auth', async function(request, response) {
       if (finalResult == undefined) {
         response.send('Incorrect Username and/or Password!');
         response.end();
-        console.log('Incorrect Username and/or Password!');
         return
       }
       else if (finalResult.verified == null) {
@@ -343,6 +355,9 @@ app.post('/auth', async function(request, response) {
       }
 
       else {
+        if (request.body.remember) {
+          request.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+        }
         request.session.loggedin = true;
         request.session.username = username;
 

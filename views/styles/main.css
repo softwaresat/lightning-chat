@@ -170,10 +170,10 @@ input {
     visibility: hidden;
 }
 .pfp {
-  height: 30px;
-  width: 30px;
-  margin-right: 0.5%;
-  border-radius: 20px;
+  height: 4rem;
+  width: 4rem;
+  margin-right: 1%;
+  border-radius: 40px;
 }
 .toConvert a, .toConvert h1, .toConvert h2, .toConvert h3, .toConvert h4, .toConvert h5, .toConvert h6, .toConvert p, .toConvert div, .toConvert span, .toConvert em, .toConvert b, .toConvert i, .toConvert strong {
   display: inline-block;

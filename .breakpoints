@@ -3,16 +3,24 @@
     "index.js": [
       {
         "id": "58757ccd-6276-45f4-b280-cbac19c7aa7b",
-        "line": 182,
-        "version": 14979,
-        "index": 5147
+        "line": 29,
+        "version": 15388,
+        "index": 935
+      }
+    ],
+    "views/help.html": [
+      {
+        "id": "21a85332-6784-4da1-b996-395c36980f20",
+        "line": 42,
+        "version": 512,
+        "index": 1904
       }
     ],
     "views/styles/login.css": [
       {
         "id": "82f2214d-cc09-441b-9e80-83ae699d7e7c",
         "line": 3,
-        "version": 647,
+        "version": 745,
         "index": 43
       }
     ]
