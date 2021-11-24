@@ -9,7 +9,7 @@ module.exports = async function(request, response, db2, nodemailer, transporter)
   var code = await request.body.code;
 const fetch = require('cross-fetch')
 
-const params = {"secret":"6Lc8wvocAAAAAKzMLDmoQrLpcGMsvyqxEAfuqExs", "response": code}
+const params = {"secret": process.env['captchasecret'], "response": code}
 
 const apicall = await fetch("https://www.google.com/recaptcha/api/siteverify", {
   method: "POST", 
