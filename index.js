@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
       cb(null, './views/pfps')
     },
     filename: function (request, file, cb) {
-      cb(null, request.body.username+'.png')
+      cb(null, request.body.username+'.jpg')
     }
 })
 var upload = multer({ storage: storage })

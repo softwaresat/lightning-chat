@@ -8,7 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
               <link rel="manifest" href="/js/pwa.webmanifest">
 
-                 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
       <meta name="description" content="An extremely fast, web-based chat service centered around functionality, privacy, and ease of use.">
 
@@ -129,7 +129,7 @@ var count = 0;
   <div class="card" id='first' style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".png" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
+      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".jpg" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 
 </div>
 </div>
@@ -150,7 +150,7 @@ var count = 0;
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".png" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
+      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".jpg" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 </div>
 </div>
       
@@ -236,15 +236,15 @@ $("#comment").val(' ');
  <div class="modal fade" id='modalforimage' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" id="tester">
         <h5 class="modal-title" id="exampleModalLabel">Send Image Address Link:</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
             <form id="form_id" name="myform">
 
       <div class="modal-body">
-      
-      <input size="50" type='text' name='image' id='image'></input>
+
+      <input type='text' name='image' id='image'></input>
       </div>
       <div class="modal-footer">
        
@@ -267,6 +267,8 @@ $("#comment").val(' ');
 </div>
 
 <script>
+
+$("#image").attr("size", document.querySelector("#tester").offsetWidth / 8);
 
 $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
 
@@ -304,7 +306,7 @@ var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
        <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;color:"#731768"'>
 
-      <p id=${count} title="${finalDate}"><img class="pfp" src="/pfps/${message.user}.png" onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
+      <p id=${count} title="${finalDate}"><img class="pfp" src="/pfps/${message.user}.jpg" onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
 </div>
       `)
         if(!message.text.startsWith('<a')){

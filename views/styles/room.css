@@ -36,8 +36,22 @@ float: right;
   color: #f1f1f1;
 }
 
+.chatroom-messages {
+  position: relative;
+  height: auto;
+}
+
+.card {
+  max-width: calc(100% - 250px);
+  margin-right: 1rem;
+  float: left !important;
+}
+
 @media only screen and (max-width: 600px) {
   textarea {
     max-width: 100% !important;
+  }
+  .card {
+    max-width: 100%;
   }
 }

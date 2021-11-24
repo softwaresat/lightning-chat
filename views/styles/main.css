@@ -170,9 +170,9 @@ input {
     visibility: hidden;
 }
 .pfp {
-  height: 4rem;
-  width: 4rem;
-  margin-right: 1%;
+  height: 3.5rem;
+  width: 3.5rem;
+  margin-right: 1rem;
   border-radius: 40px;
 }
 .toConvert a, .toConvert h1, .toConvert h2, .toConvert h3, .toConvert h4, .toConvert h5, .toConvert h6, .toConvert p, .toConvert div, .toConvert span, .toConvert em, .toConvert b, .toConvert i, .toConvert strong {
@@ -210,6 +210,11 @@ input {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+  }
+  .pfp {
+    height: 2.75rem;
+    width: 2.75rem;
+    margin-right: 0.75rem;
   }
 
 }

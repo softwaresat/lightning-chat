@@ -8,7 +8,7 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
           
-                 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <link rel="shortcut icon" type="image/jpg" href="https://media.discordapp.net/attachments/761286162333171734/904834737888198726/unknown.png"/>
 <script 
@@ -137,6 +137,8 @@ var count = 0;
    </script>   
 <% var count = 0 %>
 
+<div class="chatroom-messages">
+
 <% item.forEach(function (result) { %>
 
 <% count++ %>
@@ -145,39 +147,25 @@ var count = 0;
   <div class="card" id='first' style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".png" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
+      <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".jpg" %> onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;"><%=result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 
 </div>
 </div>
       
    
   </ul>
-      
-  
-<div style="background-color: #731768;font-size: small;">
-
-
-</div>
-</div>
 
 <% }else{ %>
 <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;' id = "<%= result.id%>parent">
 
-        <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".png" %> onerror="this.src='/pfps/originalpfp.jpg';"> <strong style="color: #b7b7b7;"><%= result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
+        <p id=<%= count%>><img class="pfp" src=<%="/pfps/"+ result.user+".jpg" %> onerror="this.src='/pfps/originalpfp.jpg';"> <strong style="color: #b7b7b7;"><%= result.user %></strong>: <span class="toConvert"><%= result.text %></span></p>
 
 </div>
 </div>
       
    
   </ul>
-      
-  
-<div>
-
-
-</div>
-</div>
 
   <% } %>
 
@@ -199,6 +187,7 @@ document.getElementById(count).title = finalDate
     <%})%>
   <div id='messages'>
 
+</div>
 </div>
  <div class="typing"></div>
     </div>
@@ -313,7 +302,7 @@ var finalDate = new Date(utc + (3600000*offset)).toLocaleString()
        <div class="card" style="width: 100%;float:right;">
     <div class="card-body" style = 'text-align:left;color:"#731768"'>
 
-      <p id=${count} title="${finalDate}"><img class="pfp" src="/pfps/${message.user}.png" onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
+      <p id=${count} title="${finalDate}"><img class="pfp" src="/pfps/${message.user}.jpg" onerror="this.src='/pfps/originalpfp.jpg';"><strong style="color: #b7b7b7;display: inline-block;">${message.user}</strong>: <span class="toConvert">${message.text}</span></p>   
 </div>
       `)
         if(!message.text.startsWith('<a')){

@@ -49,7 +49,7 @@ transporter.sendMail(mailOptions, function(error, info){
 });
   code =  `<p>Dear `+username+',</p>'+
   `
-  <p>Thank you for registering on Lightning Chat. We wish to improve your communication and collaboration through our lightning-fast platform! Lightning Chat has unique features and a growing base. Users like you keep us going, and one day we hope to make Lightning Chat an amazing place! If you have any questions or concerns, don't hesitate to email us back. This isn't a no-reply email, so we will check our messages frequently. You can also contact us via our <a href="https://discord.gg/fdv4W7r9nm">Discord Server</a>!</p>
+  <p>Thank you for registering on Lightning Chat. We wish to improve your communication and collaboration through our lightning-fast platform! Lightning Chat has unique features and a growing base. Users like you keep us going, and one day we hope to make Lightning Chat an amazing place! If you have any questions or concerns, don't hesitate to email us back. This isn't a no-reply email, so we will check our messages frequently. You can also contact us via our <a href="https://discord.gg/czZ7tnTcWF">Discord Server</a>!</p>
 <br>
   <p>Here are some other projects we are working on:</p>
   <ul>
