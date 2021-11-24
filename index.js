@@ -131,6 +131,7 @@ io.on('connection', (socket) => {
     var filter1 = new Filter();
 
     var messages;
+    if(msg.replace(/\s/g, '') != ''){
     try {
       messages = {
         user: author,
@@ -151,7 +152,7 @@ io.on('connection', (socket) => {
 
     io.emit('message', messages);
 
-
+    }
 
   })
 
@@ -163,6 +164,7 @@ io.on('connection', (socket) => {
     var Filter = require('bad-words');
     var filter1 = new Filter();
     var author = author;
+    if(msg.replace(/\s/g, '') != ''){
 
     var messages = {
       user: author,
@@ -195,6 +197,7 @@ io.on('connection', (socket) => {
       }
 
     })
+    }
   })
   socket.on('typing', (data) => {
     if (data.typing == true)

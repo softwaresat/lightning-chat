@@ -23,13 +23,17 @@ float: right;
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 1em;
   color: #818181;
   display: block;
   text-overflow: ellipsis;
   width: 200px;
   overflow:hidden;
   white-space: nowrap;
+  text-align: left;
+}
+.dropdown-menu{
+  background-color: #004766;
 }
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {

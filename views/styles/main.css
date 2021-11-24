@@ -93,15 +93,25 @@ textarea {
 
 input {
   border-radius: 20px;
-  background-color: "#731768"
+  background-color: "#731768";
 }
 
 .buttons {
   visibility: hidden;
 }
-#image{
+
+
+#image {
   border-radius: 0;
+  width: 100%;
+  text-decoration: none;
+  -webkit-appearance: none;
+  font-size: 15px;
+  border: 1rem black;
+  outline: 1rem;
 }
+
+
 #formItem label {
   display: inline-block;
   text-align: center;
@@ -143,6 +153,10 @@ input {
   z-index: 1 !important;
 }
 
+#comment::-moz-focus-inner {
+   border: 0;
+}
+
 #form {
   z-index: -2 !important;
   display: none;
@@ -162,6 +176,7 @@ input {
   height: auto;
   margin: 0;
   margin-left: 2rem;
+  margin-top: 2rem;
   max-width: 100%;
   cursor: pointer;
 }
@@ -184,7 +199,10 @@ input {
 }
 
 @media only screen and (max-width: 600px) {
-
+  
+  .card{
+    font-size: 14px;
+  }
   img {
     width: 100%;
   }

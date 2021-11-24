@@ -1,61 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-         <script src="/js/pwa.js"></script>
-
-            <title>Lightning</title>
-                      
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+   <head>
+      <script src="/js/pwa.js"></script>
+      <title>Lightning</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <link rel="stylesheet" href="styles/login.css">
-              <link rel="manifest" href="/js/pwa.webmanifest">
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
- <link rel="shortcut icon" type="image/jpg" href="https://media.discordapp.net/attachments/761286162333171734/904834737888198726/unknown.png"/>          
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="apple-touch-icon" href="https://media.discordapp.net/attachments/771154679014359070/912927112187510784/8AC1AvjqWkNXcAAAAASUVORK5CYII.png">
-
-    </head>
-    <body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style='background-color:#004766; margin-bottom: 20%;'>
-  <div class="container-fluid">
-    <a style="color: #ffd166;"class="navbar-brand" href="/">Lightning ⚡</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-     
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-  
-    </div>
-  </div>
-</nav>
-        <div class="card login-card">
-          <h2><a style='width: 100%;' id="signup" class='btn btn-outline-warning' href='/signup'>SIGN UP</a></h2>
-  <div class="card-body">
-    <h5 class="card-title">Login</h5>
-     <div class="mb-3">
-    <form id="form_id" method="POST" name="myform" action='auth'>
-  <label for="exampleFormControlInput1" class="form-label">Username</label>
-  <input type="text" class="form-control" name='username' id="username">
-  <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-  <input type="password" class="form-control" name='password' id="passowrd">
-   <label for="vehicle1">Remember Me?</label><br>
-<input type="checkbox" id="remember" name="remember" value="remember">
-</div>
-
-<input class="btn btn-success" type="submit" value="Login">
-</form>
-<p >
-  <a style="text-decoration: none; color: black;"href="/forgotpassword">Forgot Password?</a>
- 
-</p>
-
-  </div>
-</div>
-
-<div class="footer">
-  <p>Made with &#10084;&#65039; by <strong>Satvik Agarwal</strong>, <a href="https://portfolio.yeetpc.com/">Ravi Shah</a>, <a href="https://www.youtube.com/c/CHILLAXING">Shashank P.</a>, Aryav Sanjeev, Sanjay Balasubramanian, Aarav M, <a href="https://github.com/mastertar">ThyMaster555</a>, and the whole Lightning Chat Team!</p>
-</div>
-       
-    </body>
+      <link rel="manifest" href="/js/pwa.webmanifest">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="shortcut icon" type="image/jpg" href="https://media.discordapp.net/attachments/761286162333171734/904834737888198726/unknown.png"/>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <link rel="apple-touch-icon" href="https://media.discordapp.net/attachments/771154679014359070/912927112187510784/8AC1AvjqWkNXcAAAAASUVORK5CYII.png">
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style='background-color:#004766; margin-bottom: 20%;'>
+         <div class="container-fluid">
+            <a style="color: #ffd166;"class="navbar-brand" href="/">Lightning ⚡</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+         </div>
+      </nav>
+      <div class="card login-card">
+         <h2><a style='width: 100%;' id="signup" class='btn btn-outline-warning' href='/signup'>SIGN UP</a></h2>
+         <div class="card-body">
+            <h5 class="card-title">Login</h5>
+            <div class="mb-3">
+               <form id="form_id" method="POST" name="myform" action='auth'>
+                  <label for="exampleFormControlInput1" class="form-label">Username</label>
+                  <input type="text" class="form-control" name='username' id="username">
+                  <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                  <input type="password" class="form-control" name='password' id="passowrd">
+                  <label for="vehicle1">Remember Me?</label><br>
+                  <input type="checkbox" id="remember" name="remember" value="remember">
+            </div>
+            <input class="btn btn-success" type="submit" value="Login">
+            </form>
+            <p >
+               <a style="text-decoration: none; color: black;"href="/forgotpassword">Forgot Password?</a>
+            </p>
+         </div>
+      </div>
+      <div class="footer">
+         <p>Made with &#10084;&#65039; by <strong>Satvik Agarwal</strong>, <a href="https://portfolio.yeetpc.com/">Ravi Shah</a>, <a href="https://www.youtube.com/c/CHILLAXING">Shashank P.</a>, Aryav Sanjeev, Sanjay Balasubramanian, Aarav M, <a href="https://github.com/mastertar">ThyMaster555</a>, and the whole Lightning Chat Team!</p>
+      </div>
+   </body>
 </html>
