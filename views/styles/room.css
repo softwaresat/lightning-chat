@@ -3,6 +3,7 @@ textarea {
 }
 
 .sidenav {
+  font-weight: bold;
 white-space:nowrap;
 margin-top: 50px;
 float: right;
@@ -39,7 +40,12 @@ float: right;
 .sidenav a:hover {
   color: #f1f1f1;
 }
-
+.dropdown-item:hover{
+  background-color: black !important;
+}
+nav a.dropdown-item:hover{
+  background-color: white !important;
+}
 .chatroom-messages {
   position: relative;
   height: auto;

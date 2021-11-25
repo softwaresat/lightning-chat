@@ -12,6 +12,7 @@ module.exports = async function(req, res, db2) {
   var author = req.session.name;
   var public;
   db2.all("SELECT * FROM chatroom where name = ? order by id asc", [name], async (err, result) => {
+      db2.all("SELECT * FROM chatroom where private = false", async (err, publicrooms) => {
     var finalResult = result;
 
     if (result[0] == undefined) {
@@ -33,13 +34,13 @@ module.exports = async function(req, res, db2) {
                 if (result[0] == undefined) {
                   db2.run('insert into messages(user, text, chatroom) values(?,?, ?)', ['ADMIN', 'Welcome to ' + name + '!', name])
                   db2.all("SELECT * FROM messages where chatroom = ? order by id asc", [name], async (err, result) => {
-                    res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name });
+                    res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name, publicrooms: publicrooms  });
 
 
                   })
                 }
                 else {
-                  res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name });
+                  res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name, publicrooms: publicrooms  });
 
                 }
               })
@@ -63,20 +64,21 @@ module.exports = async function(req, res, db2) {
               if (result[0] == undefined) {
                 db2.run('insert into messages(user, text, chatroom) values(?,?, ?)', ['ADMIN', 'Welcome to ' + name + '!', name])
                 db2.all("SELECT * FROM messages where chatroom = ? order by id asc", [name], async (err, result) => {
-                  res.render('room', { item: result, author: author1, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name });
+                  res.render('room', { item: result, author: author1, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name, publicrooms: publicrooms });
 
                 })
               }
               else {
-                res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name });
+                res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name, publicrooms: publicrooms  });
 
               }
             })
           })
         })
       });
-
+  
     }
+      })
   })
 
   let obj = {}

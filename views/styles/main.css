@@ -11,7 +11,12 @@ body {
   font-weight:300;
   font-size: large;
 }
-
+ul.dropdown-menu{
+  background-color: black;
+}
+li.dropdown-item:hover{
+  background-color: black;
+}
 a {
   color: coral !important;
 }
@@ -68,7 +73,7 @@ a {
 }
 
 li:hover {
-  background-color:#86bbd8 !important;
+  background-color: black !important;
 }
 
 textarea {

@@ -22,25 +22,35 @@
    <body>
       <div class="sidenav">
       
-         <a href="/" style='font-size: 1em; color: white;'>Global Chat Room</a>
+         <a href="/" style='font-size: 1em; color: white;'>Global</a>
          <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="background-color: #3e505b;border-color: transparent;"aria-expanded="false">
-    Chatrooms
+  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-weight: bold;background-color: #004766;border-color: transparent;"aria-expanded="false">
+    Private 
   </a>
   <ul class="dropdown-menu" style="background-color: #004766;border-color: transparent;"aria-labelledby="dropdownMenuButton1">
          <% author.forEach(function (result) { %>
          <% if(result.name == roomname){ %>
-         <li> <a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: black; background-color: white;'><%= result.name%></a></li>
+         <li> <a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: black;'><%= result.name%></a></li>
          <% }else{ %>
           <li><a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: white;'><%= result.name%></a></li>
          <% } %> 
          <% }) %>
          <% other.forEach(function (result) { %>
          <% if(result.name == roomname){ %>
-          <li><a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: black; background-color: white;'><%= result.name%></a></li>
+          <li><a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: black;'><%= result.name%></a></li>
          <% }else{ %>
           <li><a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: white;'><%= result.name%></a></li>
          <% } %> 
+         <% }) %>
+         </ul>
+</div>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-weight: bold;background-color: #004766;border-color: transparent;"aria-expanded="false">
+    Public 
+  </a>
+  <ul class="dropdown-menu" style="background-color: #004766;border-color: transparent;"aria-labelledby="dropdownMenuButton1">
+         <% publicrooms.forEach(function (result) { %>
+         <li> <a class="dropdown-item" href=<%="/room?name="+encodeURIComponent(result.name)%> style='font-size: 1em; color: black; '><%= result.name%></a></li>
          <% }) %>
          </ul>
 </div>
