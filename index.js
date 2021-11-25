@@ -113,6 +113,8 @@ setInterval(function() {
 app.use(express.static('views'))
 app.use(express.static('views/pfps'))
 app.use(express.static('views/static'))
+app.use(express.static('views/bootstrap-5.1.3-dist/css'))
+app.use(express.static('views/bootstrap-5.1.3-dist/js'))
 
 app.use(express.static('.well-known'))
 

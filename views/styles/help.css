@@ -8,6 +8,9 @@ body {
 }
 .btn{
   width: 100%;
+  background-color: #004766;
+  border-color: transparent;
+  text-align: left;
 }
 a {
   color: coral !important;
@@ -21,6 +24,9 @@ a {
 }
 .card-body{
   width: 100%;
+  background-color: #3e505b;
+  color: white;
+  text-align: left;
 }
 *, ::after, ::before{
   box-sizing: inherit;
