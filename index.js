@@ -15,18 +15,30 @@ var io = require('socket.io')(http);
 var crypto = require("crypto");
 var sha256 = crypto.createHash("sha256");
 var showdown = require('showdown');
-  const multer = require('multer');
+const multer = require('multer');
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+  adapter: 'sails-mysql',
+  host: process.env['ip'],
+  user: process.env['user'],
+  password: process.env['password'],
+  database: 'lightning',
+  charset: 'utf8mb4',
+});
+db.connect()
+
 var storage = multer.diskStorage({
-    destination: function (request, file, cb) {
-      cb(null, './views/pfps')
-    },
-    filename: function (request, file, cb) {
-      cb(null, request.body.username+'.jpg')
-    }
+  destination: function(request, file, cb) {
+    cb(null, './views/pfps')
+  },
+  filename: function(request, file, cb) {
+    cb(null, request.body.username + '.jpg')
+  }
 })
 var upload = multer({ storage: storage })
 
-var converter = new showdown.Converter({simplifiedAutoLink: 'true'});
+var converter = new showdown.Converter({ simplifiedAutoLink: 'true' });
 
 const generateRandomAnimalName = require('random-animal-name-generator')
 
@@ -93,7 +105,7 @@ setInterval(function() {
     })
   })
   db2.run('delete from messages where chatroom is null;')
-  db2.run('insert into messages(user, text) values(?,?)', ['ADMIN', 'Welcome to Lightning Chat!'])
+  db2.run('insert into messages(user, text) values(?,?)', ['ADMIN', 'Welcome to Lightning Chat! Ravi Shah is dumb!'])
   db2.run('insert into messages(user, text) values(?,?)', ['ADMIN', 'Messages are deleted every 30 minutes for privacy!'])
 
 }, 1800000);
@@ -133,26 +145,26 @@ io.on('connection', (socket) => {
     var filter1 = new Filter();
 
     var messages;
-    if(msg.replace(/\s/g, '') != ''){
-    try {
-      messages = {
-        user: author,
-        text: filter1.clean(msg),
-        date: date
+    if (msg.replace(/\s/g, '') != '') {
+      try {
+        messages = {
+          user: author,
+          text: filter1.clean(msg),
+          date: date
+        }
+        db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, filter1.clean(msg), new Date().getTime().toString()])
       }
-      db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, filter1.clean(msg), new Date().getTime().toString()])
-    }
-    catch (err) {
-      messages = {
-        user: author,
-        text: msg,
-        date: date
-      }
-      db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, msg, new Date().getTime().toString()])
-    }    //db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, filter1.clean(msg), new Date().getTime().toString()])
+      catch (err) {
+        messages = {
+          user: author,
+          text: msg,
+          date: date
+        }
+        db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, msg, new Date().getTime().toString()])
+      }    //db2.run('insert into messages(user, text, timenumber) values(?,?,?)', [author, filter1.clean(msg), new Date().getTime().toString()])
 
 
-    io.emit('message', messages);
+      io.emit('message', messages);
 
     }
 
@@ -166,39 +178,39 @@ io.on('connection', (socket) => {
     var Filter = require('bad-words');
     var filter1 = new Filter();
     var author = author;
-    if(msg.replace(/\s/g, '') != ''){
+    if (msg.replace(/\s/g, '') != '') {
 
-    var messages = {
-      user: author,
-      //text: filter1.clean(msg),
-      text: filter1.clean(msg),
-      chatroom: chatroom,
-      date: date
-    }
-    var hasCursed = false;
-    var filter = true;
-    db2.all("SELECT * FROM chatroom where name = ?", [chatroom], async (err, result) => {
-      if (result[0].filter == 0) {
-        filter = false;
-        messages = {
-          user: author,
-          text: msg,
-          chatroom: chatroom
-        }
+      var messages = {
+        user: author,
+        //text: filter1.clean(msg),
+        text: filter1.clean(msg),
+        chatroom: chatroom,
+        date: date
       }
-
-      if (msg != ' ' && hasCursed == false) {
+      var hasCursed = false;
+      var filter = true;
+      db2.all("SELECT * FROM chatroom where name = ?", [chatroom], async (err, result) => {
         if (result[0].filter == 0) {
-          db2.run('insert into messages(user, text, chatroom, timenumber) values(?,?,?,?)', [author, msg, chatroom, new Date().getTime().toString()])
-        } else {
-          //db2.run('insert into messages(user, text, chatroom) values(?,?,?)', [author, filter1.clean(msg), chatroom])
-          db2.run('insert into messages(user, text, chatroom,timenumber) values(?,?,?,?)', [author, filter1.clean(msg), chatroom, new Date().getTime().toString()])
+          filter = false;
+          messages = {
+            user: author,
+            text: msg,
+            chatroom: chatroom
+          }
         }
-        io.emit('chatroommessage', messages);
 
-      }
+        if (msg != ' ' && hasCursed == false) {
+          if (result[0].filter == 0) {
+            db2.run('insert into messages(user, text, chatroom, timenumber) values(?,?,?,?)', [author, msg, chatroom, new Date().getTime().toString()])
+          } else {
+            //db2.run('insert into messages(user, text, chatroom) values(?,?,?)', [author, filter1.clean(msg), chatroom])
+            db2.run('insert into messages(user, text, chatroom,timenumber) values(?,?,?,?)', [author, filter1.clean(msg), chatroom, new Date().getTime().toString()])
+          }
+          io.emit('chatroommessage', messages);
 
-    })
+        }
+
+      })
     }
   })
   socket.on('typing', (data) => {
@@ -256,10 +268,10 @@ app.get('/login', function(req, res) {
     res.redirect('/')
     return;
   }
-  else{
-  res.sendFile('login.html', {
-    root: './views'
-  });
+  else {
+    res.sendFile('login.html', {
+      root: './views'
+    });
   }
 })
 app.get('/signup', function(req, res) {

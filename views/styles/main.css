@@ -17,9 +17,6 @@ ul.dropdown-menu{
 li.dropdown-item:hover{
   background-color: black;
 }
-a {
-  color: coral !important;
-}
 
 .fa-image {
   font-size: 30px;
@@ -72,8 +69,17 @@ a {
   display: inline-block;
 }
 
+.card a {
+  color: coral !important;
+}
+
 li:hover {
   background-color: black !important;
+}
+
+.nav-item {
+  padding: 0.25rem;
+  margin: 0;
 }
 
 textarea {

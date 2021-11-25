@@ -12,8 +12,9 @@ body {
   border-color: transparent;
   text-align: left;
 }
+
 a {
-  color: coral !important;
+  display: inline;
 }
 
 .card{

@@ -3,6 +3,7 @@
    <head>
       <title>Lightning</title>
       <link rel="stylesheet" href="styles/main.css">
+      <link rel="stylesheet" href="styles/newchatroom.css">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <link rel="shortcut icon" type="image/jpg" href="https://media.discordapp.net/attachments/761286162333171734/904834737888198726/unknown.png"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -22,27 +23,30 @@
             </div>
          </div>
       </nav>
-      <div class="card login-card " >
-         <div class="card-body">
-            <h5 class="card-title">Create A New Chatroom!</h5>
-            <div class="mb-3">
-               <form id="form_id" method="POST" name="myform" action='newroom'>
-                  <label for="exampleFormControlInput1" class="form-label">Name</label>
-                  <input type="text" class="form-control" name='name' id="name">
-                  <label for="vehicle1">Private?</label><br>
-                  <input type="checkbox" id="private" name="private" value="private">
-                  <p>
-                     <label for="vehicle1">Curse Filter?</label><br>
-                     <input type="checkbox" id="filter" name="filter" value="filter">
-                  </p>
-                  <p>
-                     <label for="vehicle1">Messages Deleted Every 30 Minutes?</label><br>
-                     <input type="checkbox" id="reset" name="reset" value="reset">
-                  </p>
+      <div class="buffer-top">
+        <p>buffer</p>
+      </div>
+      <div class="room-container">
+        <div class="room">
+          <div class="card login-card " >
+            <div class="card-body">
+              <h1 class="card-title">Create A New Chatroom!</h1>
+              <div class="mb-3">
+                <form id="form_id" method="POST" name="myform" action='newroom'>
+                    <label for="exampleFormControlInput1" class="form-label"><h2>Name</h2></label>
+                    <input type="text" class="form-control" name='name' id="name">
+                    <label for="vehicle1"><h2>Private</h2></label>
+                    <input type="checkbox" id="private" name="private" value="private" class="check"><br />
+                      <label for="vehicle1"><h2>Curse Filter</h2></label>
+                      <input type="checkbox" id="filter" name="filter" value="filter" class="check"><br />
+                      <label for="vehicle1"><h2>Messages Deleted Every 30 Minutes</h2></label>
+                      <input type="checkbox" id="reset" name="reset" value="reset" class="check">
+              </div>
+              <input class= "btn btn-success create"type="submit" name="" value="Create!"/>
+              </form>
             </div>
-            <input class= "btn btn-success"type="submit" name="" value="Create!"/>
-            </form>
-         </div>
+          </div>
+        </div>
       </div>
    </body>
 </html>
