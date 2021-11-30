@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Sign In/Up - Lightning Chat</title>
+      <meta name="description" content="Sign In. Use your Email. Forgot email?">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta name="description" content="An extremely fast, web-based chat service centered around functionality, privacy, and ease of use. Private · Works anywhere · Secure · Personalizable">
+      <link rel="stylesheet" href="styles/login.css">
+        <% if(host == "www.lightningchat.live"){ %>
+      <link rel="manifest" href="/js/pwa.webmanifest">
+            <script src="/js/pwa.js"></script>
+
+                        <% } %>
+
+      <link href="/bootstrap-5.1.3-dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+      <link rel="shortcut icon" type="image/jpg" href="https://media.discordapp.net/attachments/761286162333171734/904834737888198726/unknown.png"/>
+      <script src="/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+      <link rel="apple-touch-icon" href="https://media.discordapp.net/attachments/771154679014359070/912927112187510784/8AC1AvjqWkNXcAAAAASUVORK5CYII.png">
+
+            <script defer data-domain="lightningchat.live" src="https://plausible.yeetpc.com/js/plausible.js"></script>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style='background-color:#004766; margin-bottom: 20%;'>
+         <div class="container-fluid">
+            <a style="color: #ffd166;"class="navbar-brand" href="/">Lightning ⚡</a>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+         </div>
+      </nav>
+      <div class="card login-card">
+         <h2><a style='width: 100%;' id="signup" class='btn btn-outline-warning' href='/signup'>SIGN UP</a></h2>
+         <div class="card-body">
+            <h5 class="card-title">Login</h5>
+            <div class="mb-3">
+               <form id="form_id" method="POST" name="myform" action='auth'>
+                  <label for="exampleFormControlInput1" class="form-label">Username</label>
+                  <input type="text" class="form-control" name='username' id="username">
+                  <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                  <input type="password" class="form-control" name='password' id="passowrd">
+                  <br>
+                  <label for="vehicle1">Remember Me?</label>
+                  <input type="checkbox" id="remember" name="remember" value="remember">
+            </div>
+            <input class="btn btn-success" type="submit" value="Login">
+            </form>
+            <p >
+               <a style="text-decoration: none; color: black;"href="/forgotpassword">Forgot Password?</a>
+            </p>
+         </div>
+      </div>
+      <div class="footer">
+         <p>Made with &#10084;&#65039; by the Lightning Chat Team!</p>
+      </div>
+   </body>
+</html>

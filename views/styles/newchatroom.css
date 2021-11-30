@@ -1,0 +1,43 @@
+h1, h2 {
+  color: white;
+}
+
+h2 {
+  font-size: 1.5rem !important;
+  margin-top: 2rem !important; 
+}
+
+.room-container {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.room {
+  width: 50%;
+  height: 100%;
+  display: block;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buffer-top {
+  height: 100px;
+  visibility: hidden;
+}
+
+.create {
+  margin-top: 1.5rem; 
+}
+
+.check {
+  display: inline;
+}
+
+@media only screen and (max-width: 1000px) {
+  .room {
+    width: 100%;
+    margin-right: 1rem;
+  }
+}

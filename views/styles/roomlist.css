@@ -1,0 +1,32 @@
+.buffer-top {
+  height: 50px;
+  display: none;
+}
+
+.grid {
+  background-color: inherit;
+
+  /* Grid styles */
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  height: 100%;
+  padding: 2rem;
+}
+
+.card {
+  background-color: transparent !important;
+  margin: 1rem !important;
+}
+
+.card-body {
+  background-color: transparent !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .buffer-top {
+    visibility: hidden;
+    display: block;
+  }
+}

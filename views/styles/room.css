@@ -1,0 +1,67 @@
+textarea {
+    max-width: calc(100% - 230px) !important;
+}
+
+.sidenav {
+  font-weight: bold;
+white-space:nowrap;
+margin-top: 50px;
+float: right;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+   /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 3; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #004766; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding: 5px;
+  padding-top: 20px;
+  max-width: 250px;
+  overflow: hidden;
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 1em;
+  color: #818181;
+  display: block;
+  text-overflow: ellipsis;
+  width: 200px;
+  overflow:hidden;
+  white-space: nowrap;
+  text-align: left;
+}
+.dropdown-menu{
+  background-color: #004766;
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.dropdown-item:hover{
+  background-color: black !important;
+}
+nav a.dropdown-item:hover{
+  background-color: white !important;
+}
+.chatroom-messages {
+  position: relative;
+  height: auto;
+}
+
+.card {
+  max-width: calc(100% - 250px);
+  margin-right: 1rem;
+  float: left !important;
+}
+
+@media only screen and (max-width: 600px) {
+  textarea { 
+    max-width: 100% !important;
+  }
+  .card {
+    max-width: 100%;
+  }
+}

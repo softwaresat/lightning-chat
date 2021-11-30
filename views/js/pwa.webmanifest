@@ -1,0 +1,17 @@
+{
+  "name": "Lightning Chat",
+  "short_name": "Lightning Chat",
+  "description": "An extremely fast, web-based chat service centered around functionality, privacy, and ease of use.",
+  "icons": [
+    {
+      "src": "/../static/lightning-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/login",
+  "display": "fullscreen",
+  "theme_color": "#764ABC",
+  "background_color": "#004766",
+  "scope": "/"
+}

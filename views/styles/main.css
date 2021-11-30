@@ -1,0 +1,255 @@
+html, body {
+  overflow-x:hidden;
+  height: 100%;
+}
+
+body {
+  background: #3e505b !important;
+  color: black;
+  background: '#def28d' !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-weight:300;
+  font-size: large;
+}
+ul.dropdown-menu{
+  background-color: black;
+}
+
+.dropdown-item{
+  color: white !important;
+}
+
+
+.fa-image {
+  font-size: 30px;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 5px;
+  padding: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer;
+}
+.timestamps{
+  font-size: small;
+}
+#first{
+  margin-top:100px;
+}
+.messages {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 15px;
+  border: transparent;
+}
+.btn-success {
+  background: #004766 !important;
+  border-color: #004766 !important;
+  width: 100%;
+}
+.card {
+  background: #3e505b !important;
+  margin-bottom: 0;
+  color: #efefef;
+  border-radius: 20px;
+  border: transparent !important;
+  z-index: 2 !important;
+}
+.form-control {
+  background: #848383 !important;
+  border: transparent !important;
+}
+.card-title {
+  font-size: xx-large;
+  background-color: "#731768 !important";
+}
+
+.card-body {
+  padding: 10px !important;
+  display: inline-block;
+}
+
+.card a {
+  color: coral !important;
+}
+#images{
+  color: black;
+  
+}
+
+li:hover {
+  background-color: black !important;
+}
+
+.nav-item {
+  padding: 0.25rem;
+  margin: 0;
+}
+
+textarea {
+  min-height: 50px;
+  width: calc(100% - 20px) !important;
+  background-color: #919191 !important;
+  display: block;
+  margin: 0 !important;
+  padding: 10px;
+  color: #004766 !important;
+  bottom: 0;
+  -webkit-appearance: none;
+  border-radius: 0;
+  outline: none;
+  border: 0;
+  font-size: 15px;
+  height: auto;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  z-index: 1 !important;
+}
+
+input {
+  border-radius: 20px;
+  background-color: "#731768";
+}
+
+.buttons {
+  visibility: hidden;
+}
+
+
+#image {
+  border-radius: 0;
+  width: 100%;
+  text-decoration: none;
+  -webkit-appearance: none;
+  font-size: 15px;
+  border: 1rem black;
+  outline: 1rem;
+}
+
+
+#formItem label {
+  display: inline-block;
+  text-align: center;
+  line-height: 150%;
+  font-size: .85em;
+}
+
+.label {
+  text-align:center;
+}
+
+.input-container {
+  height: auto;
+  margin: 0;
+  padding: 5px;
+  bottom: 0 !important;
+  padding-bottom: 0px;
+  z-index: 0 !important;
+}
+
+#comment {
+  resize: none;
+  height: 75px;
+  min-height: 50px;
+  width: calc(100% - 20px) !important;
+  background-color: #919191 !important;
+  display: block;
+  margin: 0 !important;
+  padding: 10px;
+  color: #004766 !important;
+  bottom: 0;
+  -webkit-appearance: none;
+  border-radius: 0;
+  outline: none;
+  border: 0;
+  font-size: 15px;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  z-index: 1 !important;
+}
+
+#comment::-moz-focus-inner {
+   border: 0;
+}
+
+#form {
+  z-index: -2 !important;
+  display: none;
+}
+
+.typing {
+  color: white;
+  margin-left: 20px;
+}
+
+#slashmenu {
+  height: 10%;
+}
+
+.chat-image {
+  width: 50%;
+  height: auto;
+  margin: 0;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.buffer {
+    visibility: hidden;
+}
+.pfp {
+  height: 3.5rem;
+  width: 3.5rem;
+  margin-right: 1rem;
+  border-radius: 40px;
+}
+.toConvert a, .toConvert h1, .toConvert h2, .toConvert h3, .toConvert h4, .toConvert h5, .toConvert h6, .toConvert p, .toConvert div, .toConvert span, .toConvert em, .toConvert b, .toConvert i, .toConvert strong {
+  display: inline-block;
+  overflow: visible;
+  word-wrap: break-word;
+  white-space: initial;
+  z-index: 3;
+}
+
+@media only screen and (max-width: 600px) {
+  
+  .card{
+    font-size: 14px;
+  }
+  img {
+    width: 100%;
+  }
+  #articles {
+    margin-left: -20%;
+  }
+  #one {
+    margin-top: 30%;
+  }
+  .ring {
+    color: black !important;
+  }
+
+  #form > input {
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sidenav {
+    display: none;
+  }
+  .chat-image {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pfp {
+    height: 2.75rem;
+    width: 2.75rem;
+    margin-right: 0.75rem;
+  }
+
+}
