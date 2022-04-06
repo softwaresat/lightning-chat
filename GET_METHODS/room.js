@@ -21,7 +21,7 @@ module.exports = async function(req, res, db2) {
         name = result[0].name;
         author = req.session.name
         finalResult = result;
-        db2.all("SELECT * FROM messages where chatroom = ? order by id asc", [name], async (err, result) => {
+        db2.all("SELECT * FROM messages where chatroom = ? limit 200 order by id asc", [name], async (err, result) => {
           db2.all("SELECT * FROM chatroom where author = ?", [author], async (err, author1) => {
 
             db2.all("SELECT * FROM joinedRooms where name = ? and person = ?", [name, author], async (err, results) => {
@@ -33,7 +33,7 @@ module.exports = async function(req, res, db2) {
 
                 if (result[0] == undefined) {
                   db2.run('insert into messages(user, text, chatroom) values(?,?, ?)', ['ADMIN', 'Welcome to ' + name + '!', name])
-                  db2.all("SELECT * FROM messages where chatroom = ? order by id asc", [name], async (err, result) => {
+                  db2.all("SELECT * FROM messages where chatroom = ? limit 200 order by id asc", [name], async (err, result) => {
                     res.render('room', { author: author1, item: result, other: results, name1: req.session.name, loggedin: req.session.loggedin, name: req.session.name, roomname: name, publicrooms: publicrooms  });
 
 
